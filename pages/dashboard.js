@@ -122,7 +122,7 @@ console.log(truckloads);
                             }}>
                                 <div className='w-full flex justify-center items-center flex-col h-full'>
                                     <div className='flex flex-col gap-2'>
-                                        <span className='text-5xl font-bold text-cyan-600'>{note.price}</span>
+                                        <span className='text-5xl font-bold text-cyan-600'>${note.price}</span>
                                         <span className='font-semibold text-sm text-slate-500'>FTL- {note.equipment} </span>
                                     </div>
                                 </div>
