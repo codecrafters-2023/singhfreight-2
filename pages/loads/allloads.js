@@ -3,13 +3,13 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { MdDelete } from 'react-icons/md';
 import { FiEdit } from 'react-icons/fi';
+import { AiFillLock } from 'react-icons/ai';
 import Link from 'next/link';
 import clientPromise from '../../lib/mongo';
 import { Checkbox, Input, Select, Tooltip } from '@chakra-ui/react';
 
 
 export default function Home({ notes }) {
-
 
     const [visibility, setVisibility] = useState(false);
     const [reffNo, setReffNo] = useState('');
@@ -37,9 +37,9 @@ export default function Home({ notes }) {
 
     const [show, setShow] = useState(false);
 
+    console.log(`show: ${show}`);
 
     const router = useRouter()
-
 
     const editForm = (reffNo, PcityName, PState, PZipCode, Pdate, PTimeOne, PTimeTwo, DcityName, DState, DZipCode, Ddate, DTimeOne, DTimeTwo, price, equipment, weight, distance, commodity, multiple, rounds, loadInfo, noteId) => {
         setVisibility(visibility => !visibility)
@@ -90,9 +90,9 @@ export default function Home({ notes }) {
             multiple,
             rounds,
             loadInfo,
-            noteId
+            noteId,
         }
-        console.log(noteObj);
+        // console.log(noteObj);
         await axios.put(`/api/updateNote?id=${noteId}`, noteObj)
             .then(() => {
                 window.location.reload(false);
@@ -104,6 +104,12 @@ export default function Home({ notes }) {
             router.refresh()
         })
     }
+
+
+    const handleBookLoad = async (e) => {
+        setShow(true);
+    }
+
 
     return (
         <>
@@ -144,13 +150,13 @@ export default function Home({ notes }) {
                                                     </Tooltip>
 
                                                     <Tooltip hasArrow label='Book load' bg='gray.300' color='black'>
-                                                        <button onClick={() => setShow(!show)} className="bg-cyan-600 px-3 py-1 text-white text-lg" >Book load</button>
+                                                        <button onClick={handleBookLoad} className="bg-cyan-600 px-3 py-1 text-white text-lg" >Book load</button>
                                                     </Tooltip>
 
                                                     {
-                                                        show ? null
+                                                        show ? <div><AiFillLock /></div>
                                                             :
-                                                            <div id='editBtn'>
+                                                            <div >
                                                                 <Tooltip hasArrow label='Edit' bg='gray.300' color='black'>
                                                                     <button onClick={(
                                                                         // PcityName,
@@ -193,7 +199,7 @@ export default function Home({ notes }) {
                                                                         note.multiple,
                                                                         note.rounds,
                                                                         note.loadInfo,
-                                                                        note._id)} className='hover:text-green-600 text-2xl' ><FiEdit /></   button>
+                                                                        note._id)} className='hover:text-green-600 text-2xl' ><FiEdit id='editBtn' /></   button>
                                                                 </Tooltip>
                                                             </div>
                                                     }

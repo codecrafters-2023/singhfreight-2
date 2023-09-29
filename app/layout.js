@@ -2,6 +2,8 @@ import { AuthProvider } from "./Provider";
 import "../pages/style.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Header from "@/components/Header";
+import Head from "next/head"
+import Script from "next/script";
 
 
 export const metadata = {

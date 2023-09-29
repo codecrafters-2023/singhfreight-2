@@ -29,7 +29,7 @@ async function handler(req, res) {
             commodity,
             multiple,
             rounds,
-            loadInfo, } = req.body;
+            loadInfo,show } = req.body;
         await mongoose.connect(process.env.MONGODB_URI, {
             useNewUrlParser: true,
         }).then(() => console.log("DB connected"));
@@ -54,7 +54,7 @@ async function handler(req, res) {
             commodity,
             multiple,
             rounds,
-            loadInfo, });
+            loadInfo,show });
         await newNote.save();
         // console.log(newNote);
     } catch (error) {

@@ -1,6 +1,3 @@
-// pages/api/products/[id].js
-// import dbConnect from '../../../db';
-// import Product from '../../../models/Product';
 import { connectMongoDB } from "../../../lib/mongodb";
 const Note = require('../../../models/Note')
 

@@ -7,25 +7,25 @@ import { DateRange } from 'react-date-range';
 import { Input, Tooltip, } from '@chakra-ui/react'
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Loader from "./loader";
 
 
 const Alldata = ({ loads }) => {
 
-const truckloads = loads
-console.log(truckloads);
     const { data: session } = useSession();
     const router = useRouter();
 
-    const [loadData, setLoadData] = useState(truckloads);
-    const [allLoaddata, setAllLoadData] = useState(truckloads);
+    const [loadData, setLoadData] = useState(loads);
+    const [allLoaddata, setAllLoadData] = useState(loads);
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     const [show, setShow] = useState(false);
     const [firstDate, setFirstDate] = useState("")
     const [secondDate, setSecondDate] = useState("")
 
-    console.log(`loads: ${startDate}`);
-    console.log(`loads-2: ${allLoaddata}`);
+    if(!loadData) {
+        return <Loader />
+    }
     //<---------------- Admin Part Start ------------------->
 
     if (session?.user?.role === "admin") {

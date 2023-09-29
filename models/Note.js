@@ -66,7 +66,6 @@ const noteSchema = new Schema({
     },
     show: {
         type: Boolean,
-        default: false,
     },
 },
     {

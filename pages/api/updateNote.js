@@ -29,7 +29,7 @@ async function handler(req, res) {
         commodity,
         multiple,
         rounds,
-        loadInfo, } = req.body;
+        loadInfo,show } = req.body;
 
     try {
         await mongoose.connect(process.env.MONGODB_URI, {
@@ -62,7 +62,9 @@ async function handler(req, res) {
             commodity,
             multiple,
             rounds,
-            loadInfo,});
+            loadInfo,
+            show,
+        });
         // console.log(updateNote);
         res.status(200).json(updateNote)
     } catch (error) {

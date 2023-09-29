@@ -67,8 +67,6 @@ const Postload = () => {
             loadInfo,
         }
 
-        console.log(newObj);
-        console.log(newObj);
         const res = axios.post('/api/newNote', newObj)
             .then(() => {
                 alert('New Note')

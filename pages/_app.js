@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import Head from "next/head";
 import Header from "../components/Header";
 import { ChakraProvider } from "@chakra-ui/react";
+import { useEffect } from "react";
 
 export default function App({
     Component,
