@@ -42,20 +42,20 @@ const ProductDetail = () => {
         <div className='m-4 py-3'>
           <Link href={'/loads/allloads'} className='text-xl hover:underline hover:text-slate-500'>GET BACK TO LOADS</Link>
         </div>
-        <div className='min-h-screen flex justify-center items-center' style={{marginTop:"-150px"}}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 45%", width: "80%" }}>
+        <div className='min-h-screen flex justify-center items-center '>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 45%", width: "80%"}}>
 
             {/* ---------------Google Map Start--------------- */}
 
-            <div>
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13026993.027933573!2d-106.2559713014177!3d37.14275395502446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited%20States!5e0!3m2!1sen!2sin!4v1695936019318!5m2!1sen!2sin" style={{ width: "100%", height: "100%", border: "0" }} allowFullScreen="true" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+            <div style={{height:"70%"}}>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13026993.027933573!2d-106.2559713014177!3d37.14275395502446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited%20States!5e0!3m2!1sen!2sin!4v1695936019318!5m2!1sen!2sin" style={{ width: "100%", height: "100%", border: "0" }}  loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
             </div>
 
             {/* ---------------Google Map End--------------- */}
 
             {/* ---------------Details Area Start--------------- */}
 
-            <div className='bg-white'>
+            <div className='bg-white' style={{height:"70%",overflowY:"scroll"}}>
               <div>
                 {/* ---------------Reff No--------------- */}
                 <h1 className='text-xl m-3 underline'>Reff.No: {loadDetail?.reffNo}</h1>
@@ -63,16 +63,16 @@ const ProductDetail = () => {
 
               <div className='flex justify-between px-5 items-center my-12 '>
                 <div className='flex flex-col'>
-                  <b className='flex justify-end text-2xl'>{loadDetail?.PcityName}</b>
+                  <b className='flex justify-end text-2xl'>{loadDetail?.PcityName},{loadDetail?.PState}</b>
                   <span className='text-lgm font-medium flex justify-end'>{loadDetail?.Pdate}</span>
-                  <span>{loadDetail?.PTimeOne}-{loadDetail?.PTimeTwo}</span>
+                  <span className='flex justify-end'>{loadDetail?.PTimeOne}-{loadDetail?.PTimeTwo}</span>
                 </div>
                 {/* <span className='text-5xl w-full bg-slate-400'><TbTruckDelivery /></span> */}
                 <span className={style.truck_div}><TbTruckDelivery className={style.truck} /></span>
                 <div className='flex flex-col'>
-                  <b className='flex justify-end text-2xl'>{loadDetail?.DcityName}</b>
+                  <b className='flex justify-end text-2xl'>{loadDetail?.DcityName},{loadDetail?.DState}</b>
                   <span className='text-lgm font-medium flex justify-end'>{loadDetail?.Ddate}</span>
-                  <span> {loadDetail?.DTimeOne}-{loadDetail?.DTimeTwo} </span>
+                  <span className='flex justify-end'> {loadDetail?.DTimeOne}-{loadDetail?.DTimeTwo} </span>
                 </div>
               </div>
 
@@ -102,13 +102,17 @@ const ProductDetail = () => {
                         <Td>Commodity</Td>
                         <Td>{loadDetail?.commodity}</Td>
                       </Tr>
-                      <Tr>
+                      {/* <Tr>
                         <Td>Load Details</Td>
                         <Td ><b>{loadDetail?.loadInfo}</b></Td>
-                      </Tr>
+                      </Tr> */}
                     </Tbody>
                   </Table>
                 </TableContainer>
+                <div style={{display:"grid", gridTemplateColumns:"100px 1fr"}} className='mx-4 my-4'>
+                  <span>Load Details</span>
+                  <b className='text-justify ml-20'>{loadDetail?.loadInfo} </b>
+                </div>
               </div>
             </div>
 
