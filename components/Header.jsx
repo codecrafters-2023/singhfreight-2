@@ -120,9 +120,9 @@ const Header = () => {
             <Link href={'/dashboard'}>
                 < div className='flex items-center justify-center'>
                 <Image
-                    src='/logo.png'
-                    w={'150px'}
-                    h={'75px'}
+                    src='/headerlogo.png'
+                    w={'200px'}
+                    h={'100px'}
                     alt='Logo'
                 />
         </div>
