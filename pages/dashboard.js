@@ -7,8 +7,6 @@ import { DateRange } from 'react-date-range';
 import { Input, Tooltip, } from '@chakra-ui/react'
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import Loader from "./loader";
-
 
 const Alldata = ({ loads }) => {
 
@@ -23,9 +21,9 @@ const Alldata = ({ loads }) => {
     const [firstDate, setFirstDate] = useState("")
     const [secondDate, setSecondDate] = useState("")
 
-    if(!loadData) {
-        return <Loader />
-    }
+    // if(!loadData) {
+    //     return <Loader />
+    // }
     //<---------------- Admin Part Start ------------------->
 
     if (session?.user?.role === "admin") {
@@ -48,7 +46,7 @@ const Alldata = ({ loads }) => {
         const handleSelect = (date) => {
 
             let filtered = allLoaddata.filter((user) => {
-                let userDate = new Date(user["date"]);
+                let userDate = new Date(user["Pdate"]);
                 return (
                     userDate >= date.selection.startDate &&
                     userDate <= date.selection.endDate
