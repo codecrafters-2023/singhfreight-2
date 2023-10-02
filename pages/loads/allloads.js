@@ -122,7 +122,7 @@ export default function Home({ notes }) {
                                 notes.map((note) => {
                                     return (
                                         <>
-                                            <div className=' m-auto mt-5  bg-white py-2 hover:shadow-xl' style={{
+                                            <div  className=' m-auto mt-5  bg-white py-2 hover:shadow-xl' style={{
                                                 display: "grid", gridTemplateColumns: "1fr 1fr 40%"
                                                 , width: "65%"
                                             }}>

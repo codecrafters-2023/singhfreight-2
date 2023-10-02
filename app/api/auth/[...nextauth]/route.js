@@ -23,11 +23,11 @@ const authOptions = {
                         return null;
                     }
 
-                    const passwordMatch = await bcrypt.compare(password, user.password);
+                    // const passwordMatch = await bcrypt.compare(password, user.password);
 
-                    if (!passwordMatch) {
-                        return null;
-                    }
+                    // if (!passwordMatch) {
+                    //     return null;
+                    // }
 
                     return user;
                 } catch (error) {

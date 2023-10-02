@@ -38,7 +38,7 @@ const LoginForm = () => {
     return (
         <div className={style.main} style={{overflow:"hidden"}}>
             <div className={style.login_box}>
-                <Image src="/logo.png" alt="Logo" className={style.logo} height={70} width={150} />
+                <Image src="/headerlogo.png" alt="Logo" className={style.logo} height={70} width={150} />
                 <h2 className="text-center">Login</h2>
                 <form onSubmit={handleSubmit}>
                     <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>

@@ -27,8 +27,7 @@ async function handler(req, res) {
             weight,
             distance,
             commodity,
-            multiple,
-            rounds,
+            checkedvalues,
             loadInfo,show } = req.body;
         await mongoose.connect(process.env.MONGODB_URI, {
             useNewUrlParser: true,
@@ -52,8 +51,7 @@ async function handler(req, res) {
             weight,
             distance,
             commodity,
-            multiple,
-            rounds,
+            checkedvalues,
             loadInfo,show });
         await newNote.save();
         // console.log(newNote);

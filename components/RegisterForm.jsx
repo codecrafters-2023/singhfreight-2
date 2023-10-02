@@ -4,9 +4,11 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import style from '../styles/Register.module.css'
-import { Select } from '@chakra-ui/react';
+import { Select, useToast } from '@chakra-ui/react';
+import axios from 'axios';
 
 const RegisterForm = () => {
+    const [mcnumber, setMcNumber] = useState("");
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -14,65 +16,143 @@ const RegisterForm = () => {
     const [role, setRole] = useState("");
     const [error, setError] = useState("");
 
-    const router = useRouter()
+    const router = useRouter();
+    const toast = useToast()
 
     /* ---------------- HandleSubmit Button Start ------------------> */
 
+
+    const newObj = {
+        mcnumber,
+        name,
+        email,
+        password,
+        role
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        if (!name || !email || !password || !cpassword || !role) {
-            { `${setError(<div style={{ color: "red" }}>All Fields are required</div>)}` }
-            return;
-        }
-
-        if (password !== cpassword) {
-            { `${setError(<div style={{ color: "red" }}>Passwords not match</div>)}` }
-            return;
-        }
-
         try {
             const resUserExists = await fetch("api/userExists", {
                 method: "POST",
                 headers: {
                     "Content_type": "application/json",
                 },
-                body: JSON.stringify({ email })
+                body: JSON.stringify({ mcnumber })
             });
 
             const { user } = await resUserExists.json();
 
-            if (user) {
-                setError("User already Exists");
+            if (!user) {
+                toast({
+                    title: 'First you have to set a career information',
+                    status: 'info',
+                    duration: 9000,
+                    isClosable: true,
+                    position: 'top',
+                });
+                router.push('/careerInfo')
                 return;
             }
 
-            const res = await fetch("api/register", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    name, email, password, role
-                })
-            })
+            console.log(resUserExists);
 
-            if (res.ok) {
-                setEmail("");
-                setName("");
+            const res = axios.post('/api/registerUser', newObj)
+                .then(() => {
+                    alert('User registered successfully')
+                })
+
+            if (res) {
+                setName("")
+                setEmail("")
                 setPassword("");
                 setCPassword("");
                 setRole("");
-
-                router.push("/signin")
+                setError("");
+                toast({
+                    title: 'User registered successfully',
+                    status: 'success',
+                    duration: 9000,
+                    isClosable: true,
+                    position: 'top',
+                });
+                router.push('/signin')
             } else {
-                console.log("User registeration failed");
+                setName("")
+                setEmail("")
+                setPassword("");
+                setCPassword("");
+                setRole("");
+                setError("");
+                toast({
+                    title: 'Error during registeration',
+                    status: 'error',
+                    duration: 9000,
+                    isClosable: true,
+                    position: 'top',
+                });
             }
-
         } catch (error) {
-            console.log("Error during registeration", error);
+            console.log(error);
         }
+
     }
+
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+
+    //     if (!name || !email || !password || !cpassword || !role) {
+    //         { `${setError(<div style={{ color: "red" }}>All Fields are required</div>)}` }
+    //         return;
+    //     }
+
+    //     if (password !== cpassword) {
+    //         { `${setError(<div style={{ color: "red" }}>Passwords not match</div>)}` }
+    //         return;
+    //     }
+
+    //     try {
+    //         const resUserExists = await fetch("api/userExists", {
+    //             method: "POST",
+    //             headers: {
+    //                 "Content_type": "application/json",
+    //             },
+    //             body: JSON.stringify({ email })
+    //         });
+
+    //         const { user } = await resUserExists.json();
+
+    //         if (user) {
+    //             setError("User already Exists");
+    //             return;
+    //         }
+
+    //         const res = await fetch("api/register", {
+    //             method: "POST",
+    //             headers: {
+    //                 "Content-Type": "application/json"
+    //             },
+    //             body: JSON.stringify({
+    //                 name, email, password, role
+    //             })
+    //         })
+
+    //         if (res.ok) {
+    //             setEmail("");
+    //             setName("");
+    //             setPassword("");
+    //             setCPassword("");
+    //             setRole("");
+
+    //             router.push("/signin")
+    //         } else {
+    //             console.log("User registeration failed");
+    //         }
+
+    //     } catch (error) {
+    //         console.log("Error during registeration", error);
+    //     }
+    // }
 
     /* ---------------- HandleSubmit Button End ------------------> */
 
@@ -80,14 +160,27 @@ const RegisterForm = () => {
         <div className={style.main}>
             <div className={style.signup_box}>
                 {/* ---------------- Form Image ------------------> */}
-                
-                <Image src="/logo.png" alt="Logo" className={style.logo} height={70} width={150} />
+
+                <Image src="/headerlogo.png" alt="Logo" className={style.logo} height={70} width={150} />
 
                 {/* ---------------- Form Start ------------------> */}
 
                 <h2 className="text-center">Sign Up</h2>
                 <form onSubmit={handleSubmit}>
                     <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+                        <div className="form-group">
+                            <label htmlFor="mcnumber">Mc Number</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="mcnumber"
+                                placeholder="Mc Number"
+                                autoComplete='off'
+                                value={mcnumber}
+                                onChange={e => setMcNumber(e.target.value)}
+                            />
+                        </div>
+
                         <div className="form-group">
                             <label htmlFor="fullname">Full Name</label>
                             <input
@@ -112,7 +205,6 @@ const RegisterForm = () => {
                                 onChange={e => setEmail(e.target.value)}
                             />
                         </div>
-                        {/* <Input variant='flushed' placeholder='Flushed' /> */}
                         <div className="form-group">
                             <label htmlFor="password">Password</label>
                             <input

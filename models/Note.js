@@ -55,11 +55,8 @@ const noteSchema = new Schema({
     commodity: {
         type: String,
     },
-    multiple: {
-        type: String,
-    },
-    rounds: {
-        type: String,
+    checkedvalues: {
+        type: Array,
     },
     loadInfo: {
         type: String,

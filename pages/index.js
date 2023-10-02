@@ -1,24 +1,26 @@
-"use client";
-import { signIn } from 'next-auth/react'
+import style from '../styles/Home.module.css'
 
 export default function Home() {
     return (
         <>
-            <div
-                style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    minHeight: "100vh",
-                    flexDirection: "column",
-                    backgroundColor: "rgb(241 245 249)"
-                }}
-            >
-                <h1 style={{ fontSize: "50px", marginTop: "-50px" }}>To access the Dashboad</h1> <br />
-                <button className="btn btn-primary" onClick={() => signIn()}>
-                    Sign in
-                </button>
-            </div>
+            <section>
+                <div>
+                    <div className={style.videoContainer}>
+                        <video autoPlay loop muted className={style.video}>
+                            <source src='/videos/video.mp4' type="video/mp4" />
+                        </video>
+                        <div className={style.overlay}></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div>
+                    <p>
+                        
+                    </p>
+                </div>
+            </section>
         </>
     );
 }

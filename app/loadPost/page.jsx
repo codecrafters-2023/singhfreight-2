@@ -28,10 +28,25 @@ const Postload = () => {
     const [loadInfo, setLoadInfo] = useState('');
     const [error, setError] = useState('');
 
-    const [multiple, setMultiple] = useState('');
-    const [rounds, setRounds] = useState('');
+    const [checkedvalues, setValue] = useState([]);
 
-    // ---------------- HandleSubmit Button Start ------------------>
+    // ---------------- HandleChange Funtion start ------------------>
+
+    const handleChange = (event) => {
+
+        const { value, checked } = event.target;
+
+        if (checked) {
+            setValue(pre => [...pre, value])
+        } else {
+            setValue(pre => {
+                return [...pre.filter(skill => skill !== value)]
+            })
+        }
+    }
+    // ---------------- HandleChange Funtion end ------------------>
+
+    // ---------------- HandleSubmit function Start ------------------>
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -40,8 +55,6 @@ const Postload = () => {
             { `${setError(<div style={{ color: "red" }}>All Fields are required</div>)}` }
             return;
         }
-
-
 
         const newObj = {
             reffNo,
@@ -62,9 +75,8 @@ const Postload = () => {
             weight,
             distance,
             commodity,
-            multiple,
-            rounds,
             loadInfo,
+            checkedvalues
         }
 
         const res = axios.post('/api/newNote', newObj)
@@ -98,13 +110,11 @@ const Postload = () => {
         setWeight("")
         setDistance("")
         setCommodity("")
-        setMultiple("")
-        setRounds("")
         setLoadInfo("")
 
     }
 
-    // ---------------- HandleSubmit Button End ------------------>
+    // ---------------- HandleSubmit function End ------------------>
 
     return (
         <>
@@ -395,10 +405,10 @@ const Postload = () => {
                                     </div>
                                     <div className='flex  mb-2 w-1/2' style={{ marginTop: "40px" }}>
                                         <div className="mb-2 w-1/2">
-                                            <Checkbox name='multiple' value={multiple} onChange={(e) => setMultiple('multiple')}>Multiple</Checkbox>
+                                            <input type='checkbox' value='multiple' onChange={handleChange} />Multiple
                                         </div>
                                         <div className="mb-2 w-1/2">
-                                            <Checkbox name='multiple' value={rounds} onChange={(e) => setRounds('round')}>round</Checkbox>
+                                        <input type='checkbox' value='round' onChange={handleChange} />Round
                                         </div>
                                     </div>
                                 </div>
