@@ -1,26 +1,35 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
 import Note from '../../models/Note'
 
 
 async function handler(req, res) {
-    if (req.method != "POST") {
+    if (req.method !== 'PUT') {
         return res.status(405).end()
     }
 
+    const {id} = req.query
+    const { show } = req.body;
+
     try {
-        const {
-            show } = req.body;
         await mongoose.connect(process.env.MONGODB_URI, {
             useNewUrlParser: true,
+            useUnifiedtopology: true
         }).then(() => console.log("DB connected"));
-        let newNote = new Note({
-            show
-        });
-        await newNote.save();
+        // return res.json({ message: "sucessfull" })
     } catch (error) {
         console.log(error);
-        res.status(500).json({ error: "internal error" });
-    } finally {
+    }
+    try {
+        const updateNote = await Note.findByIdAndUpdate(id, {    
+            show,
+        });
+        console.log(updateNote);
+        res.status(200).json(updateNote)
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "not Updated" })
+
+    }finally {
         mongoose.connection.close();
     }
 }

@@ -35,13 +35,12 @@ export default function Home({ notes }) {
     const [loadInfo, setLoadInfo] = useState('');
     const [noteId, setNoteId] = useState('');
 
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState('');
 
-    console.log(`show: ${show}`);
 
     const router = useRouter()
 
-    const editForm = (reffNo, PcityName, PState, PZipCode, Pdate, PTimeOne, PTimeTwo, DcityName, DState, DZipCode, Ddate, DTimeOne, DTimeTwo, price, equipment, weight, distance, commodity, multiple, rounds, loadInfo, noteId) => {
+    const editForm = (reffNo, PcityName, PState, PZipCode, Pdate, PTimeOne, PTimeTwo, DcityName, DState, DZipCode, Ddate, DTimeOne, DTimeTwo, price, equipment, weight, distance, commodity, multiple, rounds, loadInfo, show, noteId) => {
         setVisibility(visibility => !visibility)
         setReffNo(reffNo)
         setPCityName(PcityName)
@@ -64,7 +63,24 @@ export default function Home({ notes }) {
         setMultiple(multiple)
         setRounds(rounds)
         setLoadInfo(loadInfo)
+        setShow(show)
         setNoteId(noteId)
+    }
+
+    const editValue = (show, noteId) => {
+        setShow(show)
+        setNoteId(noteId)
+    }
+    const handleBookLoad = async (noteId) => {
+        const update = {
+            show,
+            noteId
+        }
+
+        await axios.put(`/api/bookload?id=${noteId}`, update)
+            .then(() => {
+                window.location.reload(false);
+            })
     }
 
     const updateNote = async (noteId) => {
@@ -90,6 +106,7 @@ export default function Home({ notes }) {
             multiple,
             rounds,
             loadInfo,
+            show,
             noteId,
         }
         // console.log(noteObj);
@@ -105,12 +122,6 @@ export default function Home({ notes }) {
         })
     }
 
-
-    const handleBookLoad = async (e) => {
-        setShow(true);
-    }
-
-
     return (
         <>
             <div style={{ backgroundColor: "rgb(241 245 249)", height: "100vh" }}>
@@ -122,7 +133,7 @@ export default function Home({ notes }) {
                                 notes.map((note) => {
                                     return (
                                         <>
-                                            <div  className=' m-auto mt-5  bg-white py-2 hover:shadow-xl' style={{
+                                            <div className=' m-auto mt-5  bg-white py-2 hover:shadow-xl' style={{
                                                 display: "grid", gridTemplateColumns: "1fr 1fr 40%"
                                                 , width: "65%"
                                             }}>
@@ -150,33 +161,15 @@ export default function Home({ notes }) {
                                                     </Tooltip>
 
                                                     <Tooltip hasArrow label='Book load' bg='gray.300' color='black'>
-                                                        <button onClick={handleBookLoad} className="bg-cyan-600 px-3 py-1 text-white text-lg" >Book load</button>
+                                                        <button  onClick={() => handleBookLoad(noteId)} className="bg-cyan-600 px-3 py-1 text-white text-lg" >Book load</button>
                                                     </Tooltip>
 
                                                     {
-                                                        show ? <div><AiFillLock /></div>
+                                                        note.show ? <div><AiFillLock /></div>
                                                             :
                                                             <div >
                                                                 <Tooltip hasArrow label='Edit' bg='gray.300' color='black'>
                                                                     <button onClick={(
-                                                                        // PcityName,
-                                                                        // PState,
-                                                                        // PZipCode,
-                                                                        // Pdate,
-                                                                        // PTimeOne,
-                                                                        // PTimeTwo,
-                                                                        // DcityName,
-                                                                        // DState,
-                                                                        // DZipCode,
-                                                                        // Ddate,
-                                                                        // DTimeOne,
-                                                                        // DTimeTwo,
-                                                                        // price,
-                                                                        // equipment,
-                                                                        // weight,
-                                                                        // distance,
-                                                                        // commodity,
-                                                                        // loadInfo,
                                                                     ) => editForm(
                                                                         note.reffNo,
                                                                         note.PcityName,
@@ -199,10 +192,17 @@ export default function Home({ notes }) {
                                                                         note.multiple,
                                                                         note.rounds,
                                                                         note.loadInfo,
-                                                                        note._id)} className='hover:text-green-600 text-2xl' ><FiEdit id='editBtn' /></   button>
+                                                                        note.show,
+                                                                        note._id)} className='hover:text-green-600 text-2xl' ><FiEdit /></   button>
                                                                 </Tooltip>
                                                             </div>
                                                     }
+
+                                                    <button onClick={() =>
+                                                        editValue(
+                                                            note.show,
+                                                            note._id
+                                                        )}>book</button>
 
                                                     <Tooltip hasArrow label='Delete' bg='gray.300' color='black'>
                                                         <button onClick={() => deleteNote(note._id)} className='hover:text-rose-600 text-2xl' ><MdDelete /></button>
@@ -213,6 +213,7 @@ export default function Home({ notes }) {
                                     )
                                 })
                             }
+                            <input type="text" value={show} onChange={(e) => setShow(e.target.value)} />
                             {
                                 visibility &&
                                 <div className='min-h-screen bg-white'>
@@ -222,6 +223,20 @@ export default function Home({ notes }) {
                                             {/* --------------Pickup Area Start--------------- */}
 
                                             <div className='w-full'>
+                                                <div>
+                                                    <label className='text-2xl' htmlFor="reffNo" >Reff No</label>
+                                                    <Input
+                                                        size='xs'
+                                                        type="text"
+                                                        className="form-control w-40"
+                                                        id="reffNo"
+                                                        name="reffNo"
+                                                        placeholder='Reff no'
+                                                        value={show}
+                                                        onChange={e => setShow(true)}
+                                                    // onChange={e => setShow(e.target.value)}
+                                                    />
+                                                </div>
                                                 <div>
                                                     <label className='text-2xl' htmlFor="reffNo" >Reff No</label>
                                                     <Input
