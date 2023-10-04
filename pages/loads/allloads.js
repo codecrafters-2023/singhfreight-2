@@ -37,7 +37,7 @@ export default function Home({ notes }) {
 
     const [show, setShow] = useState('');
 
-
+console.log(show);
     const router = useRouter()
 
     const editForm = (reffNo, PcityName, PState, PZipCode, Pdate, PTimeOne, PTimeTwo, DcityName, DState, DZipCode, Ddate, DTimeOne, DTimeTwo, price, equipment, weight, distance, commodity, multiple, rounds, loadInfo, show, noteId) => {
@@ -77,8 +77,8 @@ export default function Home({ notes }) {
             noteId
         }
 
-        await axios.put(`/api/bookload?id=${noteId}`, update)
-            .then(() => {
+        const res = await axios.put(`/api/bookload?id=${noteId}`,{update})
+        .then(() => {
                 window.location.reload(false);
             })
     }
@@ -161,7 +161,7 @@ export default function Home({ notes }) {
                                                     </Tooltip>
 
                                                     <Tooltip hasArrow label='Book load' bg='gray.300' color='black'>
-                                                        <button  onClick={() => handleBookLoad(noteId)} className="bg-cyan-600 px-3 py-1 text-white text-lg" >Book load</button>
+                                                        <button onClick={() => handleBookLoad(noteId)} className="bg-cyan-600 px-3 py-1 text-white text-lg" >Book load</button>
                                                     </Tooltip>
 
                                                     {

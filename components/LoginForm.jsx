@@ -28,7 +28,7 @@ const LoginForm = () => {
 
             console.log(res);
 
-            router.replace("/main");
+            router.replace("/user");
 
         } catch (error) {
             console.log(error);

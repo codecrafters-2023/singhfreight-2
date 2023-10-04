@@ -1,43 +1,85 @@
-.main {
-    padding: 10px 100px;
-    position: sticky;
-    top: 0;
-    left: 0;
-    display: grid;
-    grid-template-columns: 400px 1fr 400px;
-    background-color: #fff;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&family=Roboto:wght@400&display=swap');
+
+.main{
+    width: 100%;
+    height: auto;
+    padding: 0px 100px;
     z-index: 1000;
 }
+.main_inner {
+    display: grid;
+    margin: 0 180px;
+    padding: 50px 80px;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: #fff;
+}
+.logo_div{
+    display: flex;
+    justify-content: center;
+}
+.logo{
+    width: 40%;
+}
 
-.link {
-    text-decoration: none;
-    font-weight: 500;
+.header_info_div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
     font-size: 18px;
-    transition: all 0.3s;
 }
-
-.link:hover {
-    color: grey;
+.header_info_div .header_icon{
+    font-size: 30px;
+    margin-right: 15px;
 }
-
-#getBtn {
-    font-size: 20px;
-    font-weight: 500;
-    padding: 15px 35px;
-    position: relative;
-}
-#getBtn:hover {
-    background-color: rgb(14 165 233);
-    color: red;
-}
-.profileIcon_div{
+.header_info_div .phone_info{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    font-weight: 500;
 }
-.profileIcon {
-    font-size: 30px;
+.header_info_div .phone_info span{
+    color: rgb(143, 143, 143);
+    font-weight: 100;
+    font-family: Roboto;
+}
+.header_info_div .phone_info .email_link{
+    color: rgb(89, 89, 89);
+    font-family: Roboto;
+    text-decoration: none;
+}
+.header_info_div .phone_info .phone_link{
+    color: rgb(89, 89, 89);
+    font-family: Roboto;
+    text-decoration: none;
+}
 
+
+@media (max-width: 992px){
+    .main_inner{
+        margin: 0 0;
+        padding: 30px 30px;
+    }
+    .main{
+        padding: 0px 0px;
+    }
+    .logo{
+        width: 60%;
+    }
+    .header_info_div{
+        font-size: 16px;
+    }
+}
+@media (max-width: 767px){
+    .main_inner{
+        grid-template-columns: 1fr;
+    }
+    .main{
+        padding: 0px 20px;
+    }
+    .logo{
+        width: 60%;
+    }
+    .header_info_div{
+        display: none;
+    }
 }
