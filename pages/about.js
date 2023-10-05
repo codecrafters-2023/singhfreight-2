@@ -1,8 +1,8 @@
 import React from 'react'
-import style from '../../styles/about.module.css'
+import style from '../styles/about.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
-import Footer from '../../components/Footer'
+import Footer from '../components/Footer'
 
 const page = () => {
   return (

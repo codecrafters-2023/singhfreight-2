@@ -1,5 +1,5 @@
 import React from 'react'
-import style from '../../styles/ContactPage.module.css'
+import style from '../styles/ContactPage.module.css'
 import { BsTwitter } from 'react-icons/bs';
 import { BiLogoFacebook } from 'react-icons/bi';
 import { GrLinkedinOption } from 'react-icons/gr';
@@ -8,7 +8,7 @@ import { BsTelephoneInboundFill, BsGlobe } from 'react-icons/bs';
 import { GrMail } from 'react-icons/gr';
 // import { BsGlobe } from 'react-icons/gr';
 import Link from 'next/link'
-import Footer from '../../components/Footer'
+import Footer from '../components/Footer'
 
 const page = () => {
   return (

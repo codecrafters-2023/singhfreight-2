@@ -2,9 +2,6 @@ import { AuthProvider } from "./Provider";
 import "../pages/style.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Header from "@/components/MainHeader";
-import { Poppins } from 'next/font/google'
-
-const poppins = Poppins({ subsets: ['latin'], weight: ['400'] })
 
 export const metadata = {
   title: "Singhfreight Inc",
@@ -17,7 +14,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={poppins.className}>
+      <body>
         <AuthProvider>
           <Header />
           {children}
