@@ -77,12 +77,12 @@ const Header = () => {
                             <span className={style.header_icon}><MdEmail /></span>
                             <span className={style.phone_info}>
                                 <span>Email:</span>
-                                <Link href={'#'}  className={style.email_link}>Company Email</Link>
+                                <Link href={'#'} className={style.email_link}>Company Email</Link>
                             </span>
                         </div>
                     </div>
                     <div>
-                        <div className={style.logo_div}>
+                        <Link href={"/"}> <div className={style.logo_div}>
                             <Image
                                 src='/headerlogo.png'
                                 alt='Logo'
@@ -90,14 +90,14 @@ const Header = () => {
                                 width={100}
                                 height={100}
                             />
-                        </div>
+                        </div></Link>
                     </div>
                     <div>
                         <div className={style.header_info_div}>
                             <span className={style.header_icon}><FaPhoneVolume /></span>
                             <span className={style.phone_info}>
                                 <span  >CONTACT</span>
-                                <Link href={'#'}  className={style.phone_link}>Company tel</Link>
+                                <Link href={'#'} className={style.phone_link}>Company tel</Link>
                             </span>
                         </div>
                     </div>
