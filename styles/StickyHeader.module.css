@@ -12,10 +12,13 @@
 
 .ul {
     display: flex;
-    font-family: Poppins;
-    gap: 40px;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    font-size: 18px;
     text-transform: uppercase;
     color: #000;
+    margin: 0;
 }
 
 .ul li {

@@ -15,7 +15,7 @@ const StickyHeader = () => {
                                 <Link href={"/contact"} className={style.link}>CONTACT</Link >
                             </li>
                             <li>
-                                <Link href={"/blogs"} className={style.link}>BLOGS / NEWS</Link >
+                                <Link href={"/blogs"} className={style.link}>BLOGS/NEWS</Link >
                             </li>
                             <li>
                                 <Link href={"/whyUs"} className={style.link}>WHY US</Link >

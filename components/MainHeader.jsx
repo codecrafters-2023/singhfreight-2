@@ -60,7 +60,7 @@
 
 import React from 'react'
 import Link from "next/link";
-import style from '../styles/Header.module.css'
+import style from '../styles/MainHeader.module.css'
 import Image from 'next/image'
 import { FaPhoneVolume } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';

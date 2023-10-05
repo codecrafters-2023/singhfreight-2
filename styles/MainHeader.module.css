@@ -10,7 +10,7 @@
 .main_inner {
     display: grid;
     margin: 0 180px;
-    padding: 50px 80px;
+    padding: 20px 80px;
     grid-template-columns: 1fr 1fr 1fr;
     background-color: #fff;
 }

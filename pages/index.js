@@ -1,5 +1,4 @@
 import style from '../styles/Home.module.css'
-import StickyHeader from '../components/StickyHeader';
 import Link from 'next/link';
 import { FaTruckMoving } from 'react-icons/fa';
 import { FiBookOpen } from 'react-icons/fi';
@@ -9,7 +8,6 @@ import Footer from '../components/Footer';
 export default function Home() {
     return (
         <>
-                        <StickyHeader />
             <section className={style.section}>
                 <div className={style.videoContainer}>
                     <video autoPlay loop muted className={style.video}>
@@ -45,7 +43,7 @@ export default function Home() {
             <section className='mb-12'>
                 <div className='container mt-10'>
                     <div>
-                        <h1 className={style.services_heading}>Our Survices</h1>
+                        <h1 className={style.services_heading}>Our Services</h1>
                         <p className={style.services_description}>If you’re looking for a Trustworthy & Fastest Trucking Services Provider all over the 48 State, Then, We are here!!</p>
                     </div>
                     <div className="row row-cols-1 row-cols-md-3 g-4 mt-12" >

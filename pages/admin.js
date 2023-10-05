@@ -68,7 +68,7 @@ const Admin = ({ users }) => {
 
     return (
         <>
-            <div style={{ height: "100vh", backgroundColor: "rgb(241 245 249)" }} className="w-full">
+            <div style={{ height: "100vh",}} className="w-full">
                 <h1>Welcome {session?.user?.name} </h1>
                 <div >
                 </div>
