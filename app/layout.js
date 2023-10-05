@@ -2,9 +2,9 @@ import { AuthProvider } from "./Provider";
 import "../pages/style.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Header from "@/components/MainHeader";
-import Head from 'next/head'
+import { Poppins } from 'next/font/google'
 
-
+const poppins = Poppins({ subsets: ['latin'], weight: ['400'] })
 
 export const metadata = {
   title: "Singhfreight Inc",
@@ -17,12 +17,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <Head>
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet" />
-      </Head>
-      <body >
+      <body className={poppins.className}>
         <AuthProvider>
           <Header />
           {children}
