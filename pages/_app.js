@@ -4,16 +4,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Head from "next/head";
 import Header from "../components/MainHeader";
 import { ChakraProvider } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { Inter } from 'next/font/google'
+
+
+const inter = Inter({ subsets: ['latin'] })
 
 
 export default function App({
     Component,
     pageProps: { session, ...pageProps },
 }) {
-    useEffect(() => {
-        require("bootstrap/dist/js/bootstrap.bundle.min.js");
-    })
     return (
         <>
             <Head>
