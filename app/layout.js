@@ -2,8 +2,8 @@ import { AuthProvider } from "./Provider";
 import "../pages/style.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Header from "@/components/MainHeader";
-import Head from "next/head"
-import Script from "next/script";
+import Head from 'next/head'
+
 
 
 export const metadata = {
@@ -17,6 +17,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <Head>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet" />
+      </Head>
       <body >
         <AuthProvider>
           <Header />
