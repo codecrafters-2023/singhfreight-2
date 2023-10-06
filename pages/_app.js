@@ -6,7 +6,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import MainHeader from "../components/MainHeader";
 import StickyHeader from "../components/StickyHeader";
 import { useEffect } from "react";
-
+// import Footer from '../components/Footer'
 
 
 
@@ -30,6 +30,7 @@ export default function App({
                     <MainHeader />
                     <StickyHeader />
                     <Component {...pageProps} />
+                    {/* <Footer /> */}
                 </SessionProvider>
             </ChakraProvider>
         </>

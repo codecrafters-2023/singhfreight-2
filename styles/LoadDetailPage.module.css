@@ -8,7 +8,7 @@
 }
 
 .load_info_div{
-    background-color: #fff;
+    background-color: rgb(241 245 249);
     height: 70%;
     overflow-y: scroll;
 }

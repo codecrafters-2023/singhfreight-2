@@ -7,7 +7,7 @@ export default function DashboardLayout({
     return (
         <section>
                 <div style={{ display: "grid", gridTemplateColumns: "20% 1fr", width: "100%" }}>
-                    <nav style={{ width: "300px", height: "100%", backgroundColor: "#dddddd"}}>
+                    <nav style={{ width: "300px", height: "100%", minHeight:"1000px", backgroundColor: "#dddddd"}}>
                         <div style={{display:"flex",justifyContent:"center" }}>
                             <div style={{marginTop:"50px"}} >
                                 <Link href={"/admin"}><Image alt="" src={'/headerlogo.png'} height={100} width={100} style={{width:"100%"}} /></Link>

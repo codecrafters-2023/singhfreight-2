@@ -37,8 +37,8 @@ const ProductDetail = () => {
 
   return (
     <>
-      <div style={{ backgroundColor: "rgb(241 245 249)" }}>
-        <div className='m-4 py-3'>
+      <div >
+        <div className=' py-3'>
           {/* <Link href= {''} className='text-xl hover:underline hover:text-slate-500'>GET BACK TO LOADS</Link> */}
         </div>
         <div className='min-h-screen flex justify-center items-center '>
