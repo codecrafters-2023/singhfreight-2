@@ -24,6 +24,9 @@ export default function DashboardLayout({
                                     <li>
                                         <Link href={"/addLoad"}>add loads</Link>
                                     </li>
+                                    <li>
+                                        <Link href={"/userActiveForm"}>Active User</Link>
+                                    </li>
                                 </ul>
                             </div>
                     </nav>

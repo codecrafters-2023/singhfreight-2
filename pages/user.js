@@ -31,6 +31,8 @@ const Alldata = ({ loads }) => {
 
         // <------------------ User Part Start -------------------->
 
+    }else if(session?.user?.role === ""){
+        router.push('/signin');
     } else if (session?.user?.role === "user") {
 
         // <------------------ Date Picker Part Start -------------------->

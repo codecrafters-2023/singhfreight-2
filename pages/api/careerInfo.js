@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
-// import Note from '../../models/carrerInfo'
-
-const career = require('../../models/careerInfo')
+const career = require('../../models/careerInfo');
 
 
 async function handler(req, res) {
@@ -10,11 +8,11 @@ async function handler(req, res) {
     }
 
     try {
-        const { mcnumber } = req.body;
+        const { mcnumber, insuranceExpiry } = req.body;
         await mongoose.connect(process.env.MONGODB_URI, {
             useNewUrlParser: true,
         }).then(() => console.log("DB connected"));
-        let newNote = new career({ mcnumber });
+        let newNote = new career({ mcnumber, insuranceExpiry });
         await newNote.save();
         console.log(newNote);
     } catch (error) {

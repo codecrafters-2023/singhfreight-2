@@ -30,8 +30,15 @@ const RegisterForm = () => {
         role
     }
 
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
+        if (!name || !email || !password || !role) {
+            { `${setError(<div style={{ color: "red" }}>All field are required</div>)}` }
+            return;
+        }
+
         try {
             const resUserExists = await fetch("api/userExists", {
                 method: "POST",
@@ -51,108 +58,62 @@ const RegisterForm = () => {
                     isClosable: true,
                     position: 'top',
                 });
-                router.push('/careerInfo')
+                router.push('https://onboard.dat.com/singhfreight')
                 return;
             }
 
-            console.log(resUserExists);
 
-            const res = axios.post('/api/registerUser', newObj)
-                .then(() => {
-                    alert('User registered successfully')
-                })
-
-            if (res) {
-                setName("")
-                setEmail("")
-                setPassword("");
-                setCPassword("");
-                setRole("");
-                setError("");
-                toast({
-                    title: 'User registered successfully',
-                    status: 'success',
-                    duration: 9000,
-                    isClosable: true,
-                    position: 'top',
-                });
-                router.push('/signin')
+            if (password !== cpassword) {
+                { `${setError(<div style={{ color: "red" }}>Password Doesn&#10076;t Match! Please confirm your Password</div>)}` }
+                return;
+            } else if (password > 8) {
+                {
+                    `${setError(<div style={{ color: "red" }}>Must contain at least one number and one uppercase and lowercase
+                        letter, and at least 8 or more characters</div>)}`
+                }
+                return;
             } else {
-                setName("")
-                setEmail("")
-                setPassword("");
-                setCPassword("");
-                setRole("");
-                setError("");
-                toast({
-                    title: 'Error during registeration',
-                    status: 'error',
-                    duration: 9000,
-                    isClosable: true,
-                    position: 'top',
-                });
+
+                const res = axios.post('/api/registerUser', newObj)
+                    .then(() => {
+                        alert('User registered successfully')
+                    })
+
+                if (res) {
+                    setName("")
+                    setEmail("")
+                    setPassword("");
+                    setCPassword("");
+                    setRole("");
+                    setError("");
+                    toast({
+                        title: 'User registered successfully',
+                        status: 'success',
+                        duration: 9000,
+                        isClosable: true,
+                        position: 'top',
+                    });
+                    router.push('/signin')
+                } else {
+                    setName("")
+                    setEmail("")
+                    setPassword("");
+                    setCPassword("");
+                    setRole("");
+                    setError("");
+                    toast({
+                        title: 'Error during registeration',
+                        status: 'error',
+                        duration: 9000,
+                        isClosable: true,
+                        position: 'top',
+                    });
+                }
             }
         } catch (error) {
             console.log(error);
         }
-
     }
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-
-    //     if (!name || !email || !password || !cpassword || !role) {
-    //         { `${setError(<div style={{ color: "red" }}>All Fields are required</div>)}` }
-    //         return;
-    //     }
-
-    //     if (password !== cpassword) {
-    //         { `${setError(<div style={{ color: "red" }}>Passwords not match</div>)}` }
-    //         return;
-    //     }
-
-    //     try {
-    //         const resUserExists = await fetch("api/userExists", {
-    //             method: "POST",
-    //             headers: {
-    //                 "Content_type": "application/json",
-    //             },
-    //             body: JSON.stringify({ email })
-    //         });
-
-    //         const { user } = await resUserExists.json();
-
-    //         if (user) {
-    //             setError("User already Exists");
-    //             return;
-    //         }
-
-    //         const res = await fetch("api/register", {
-    //             method: "POST",
-    //             headers: {
-    //                 "Content-Type": "application/json"
-    //             },
-    //             body: JSON.stringify({
-    //                 name, email, password, role
-    //             })
-    //         })
-
-    //         if (res.ok) {
-    //             setEmail("");
-    //             setName("");
-    //             setPassword("");
-    //             setCPassword("");
-    //             setRole("");
-
-    //             router.push("/signin")
-    //         } else {
-    //             console.log("User registeration failed");
-    //         }
-
-    //     } catch (error) {
-    //         console.log("Error during registeration", error);
-    //     }
-    // }
 
     /* ---------------- HandleSubmit Button End ------------------> */
 
@@ -212,6 +173,8 @@ const RegisterForm = () => {
                                 className="form-control"
                                 id="password"
                                 placeholder="Password"
+                                // pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                                 value={password}
                                 onChange={e => setPassword(e.target.value)}
                             />
