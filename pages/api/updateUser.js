@@ -11,7 +11,6 @@ async function handler(req, res) {
         const { name, email, role } = req.body;
         await connectMongoDB();
         const updateNote = await User.findByIdAndUpdate(id, { name, email, role });
-        // console.log(updateNote);
         res.status(200).json(updateNote)
     } catch (error) {
         console.log(error);

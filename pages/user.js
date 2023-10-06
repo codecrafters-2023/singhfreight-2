@@ -7,6 +7,7 @@ import { DateRange } from 'react-date-range';
 import { Input, Tooltip, } from '@chakra-ui/react'
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import style from '../styles/allloads.module.css'
 
 const Alldata = ({ loads }) => {
 
@@ -21,9 +22,6 @@ const Alldata = ({ loads }) => {
     const [firstDate, setFirstDate] = useState("")
     const [secondDate, setSecondDate] = useState("")
 
-    // if(!loadData) {
-    //     return <Loader />
-    // }
     //<---------------- Admin Part Start ------------------->
 
     if (session?.user?.role === "admin") {
@@ -70,31 +68,30 @@ const Alldata = ({ loads }) => {
         // <------------------ Date Picker Part End -------------------->
 
         return (
-            <div style={{ display: "grid", gridTemplateColumns: "25% 1fr", padding: "10px 30px", height: "100vh", backgroundColor: "rgb(241 245 249)" }} >
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                    <h1> Welcome <span >{session?.user?.name}</span> </h1>
+            <div style={{ display: "grid", gridTemplateColumns: "25% 1fr", padding: "10px 30px", height: "100vh" }} >
 
                     {/* <----------------Filter Area start----------------> */}
 
-                    <div style={{ display: "flex", justifyContent: "space-between" }} >
-                        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-                            <div >
-                                <label>From </label>
-                                <Input
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", flexDirection:"column" }} >
+                        <div style={{ display: "flex", gap: "20px", marginTop:"50px" }}>
+                            <div style={{display:"flex"}}>
+                                <label className='text-lg text-slate-600 mb-2'>From </label>
+                                <input
                                     value={firstDate}
                                     onChange={() => { setFirstDate(firstDatevalue) }}
                                     onClick={() => setShow(!show)}
-                                    style={{ width: "150px", backgroundColor: "#fff", marginLeft: "5px" }}
+                                    style={{ width: "150px",border:"1px solid #000", marginLeft: "5px", outline:"none", height:"30px" }}
 
                                 />
                             </div>
-                            <div>
-                                <label>To</label>
-                                <Input
+                            <div style={{display:"flex"}}>
+                                <label className='text-lg text-slate-600 mb-2'>To</label>
+                                <input
                                     value={secondDate}
                                     onChange={() => { setSecondDate(secondDatevalue) }}
                                     onClick={() => setShow(!show)}
-                                    style={{ width: "150px", backgroundColor: "#fff", marginLeft: "5px" }}
+                                    style={{ width: "150px",border:"1px solid #000", marginLeft: "5px", outline:"none" , height:"30px"}}
 
                                 />
                             </div>
@@ -105,7 +102,7 @@ const Alldata = ({ loads }) => {
                                 onChange={handleSelect}
                             /> : ""
                         }
-                        <button className="btn btn-warning" style={{ height: "40px" }} onClick={clearFilter}>Clear filter</button>
+                        <button className="btn btn-warning" style={{ height: "40px", marginTop:"20px" }} onClick={clearFilter}>Clear filter</button>
                     </div>
                 </div>
 
@@ -114,35 +111,35 @@ const Alldata = ({ loads }) => {
                 <div className="w-full" style={{padding:"0 100px"}} >
                     {loadData.map((note) => (
                         <>
-                            <div className=' m-auto mt-5  bg-white hover:shadow-xl py-2' style={{
-                                display: "grid", gridTemplateColumns: "1fr 1fr 500px"
-                                , width: "1fr"
-                            }}>
-                                <div className='w-full flex justify-center items-center flex-col h-full'>
-                                    <div className='flex flex-col gap-2'>
-                                        <span className='text-5xl font-bold text-cyan-600'>${note.price}</span>
-                                        <span className='font-semibold text-sm text-slate-500'>FTL- {note.equipment} </span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className='flex flex-col w-full'>
-                                        <b className='flex justify-end'>{note.PcityName}, {note.PState}</b>
-                                        {/* <span className='flex justify-end text-base font-bold'>{note.PcityName}</span> */}
-                                        <span className='text-sm font-medium flex justify-end'> {note.Pdate}, {note.PTimeOne}-{note.PTimeTwo} </span>
-                                    </div>
-                                    <br />
-                                    <div className='flex flex-col w-full'>
-                                        <b className='flex justify-end'>{note.DcityName}, {note.DState}</b>
-                                        <span className='text-sm font-medium flex justify-end'> {note.Ddate}, {note.DTimeOne}-{note.DTimeTwo} </span>
-                                    </div>
-                                </div>
-                                <div className=' flex items-center px-5 justify-center'>
-                                    <Tooltip hasArrow label='View Details' bg='gray.300' color='black'>
-                                        <Link href={`loads/${note._id}`} className="bg-cyan-600 px-3 py-1 text-white text-lg" >View Detail</Link>
-                                    </Tooltip>
-                                </div>
-                            </div>
-                        </>
+                         <div className={style.main_div}>
+                                                <div className={style.price_div}>
+                                                    <div className={style.price_inner_div}>
+                                                        <span className='text-5xl font-bold text-cyan-600'>${note.price}</span>
+                                                        <span className=' text-sm text-slate-500'>FTL- {note.equipment} </span>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div className={style.Pickup_load_div}>
+                                                        <b className='flex font-normal justify-end'>{note.PcityName}, {note.PState}</b>
+                                                        <span className='text-sm font-light flex justify-end'> {note.Pdate}, {note.PTimeOne}-{note.PTimeTwo} </span>
+                                                    </div>
+                                                    <br />
+                                                    <div className={style.dilivery_load_div}>
+                                                        <b className='flex font-normal justify-end'>{note.DcityName}, {note.DState}</b>
+                                                        <span className='text-sm font-light flex justify-end'> {note.Ddate}, {note.DTimeOne}-{note.DTimeTwo} </span>
+                                                    </div>
+                                                </div>
+                                                <div className={style.button_div}>
+                                                    <Tooltip hasArrow label='View Details' bg='gray.300' color='black'>
+                                                        <Link href={`/loads/${note._id}`} className="bg-cyan-600 px-3 py-1 text-white text-lg" >View Detail</Link>
+                                                    </Tooltip>
+
+                                                    <Tooltip hasArrow label='Book load' bg='gray.300' color='black'>
+                                                        <button onClick={() => handleBookLoad(noteId)} className="bg-cyan-600 px-3 py-1 text-white text-lg" >Book load</button>
+                                                    </Tooltip>
+                                                </div>
+                                            </div>
+                    </>
                     ))}
                 </div>
             </div>

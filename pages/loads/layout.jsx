@@ -2,12 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function DashboardLayout({
-    children, // will be a page or nested layout
+    children,
 }) {
     return (
         <section>
-                <div style={{ display: "grid", gridTemplateColumns: "25% 1fr", width: "100%" }}>
-                    <nav style={{ width: "300px", height: "1000px", backgroundColor: "#dddddd"}}>
+                <div style={{ display: "grid", gridTemplateColumns: "20% 1fr", width: "100%" }}>
+                    <nav style={{ width: "300px", height: "100%", backgroundColor: "#dddddd"}}>
                         <div style={{display:"flex",justifyContent:"center" }}>
                             <div style={{marginTop:"50px"}} >
                                 <Link href={"/admin"}><Image alt="" src={'/headerlogo.png'} height={100} width={100} style={{width:"100%"}} /></Link>
@@ -19,10 +19,10 @@ export default function DashboardLayout({
                                         <Link href={"/admin"}>dashboard</Link>
                                     </li>
                                     <li>
-                                        <Link href={"/allloads"}>all loads</Link>
+                                        <Link href={"/loads/allloads"}>all loads</Link>
                                     </li>
                                     <li>
-                                        <Link href={"/loadPost"}>add loads</Link>
+                                        <Link href={"/addLoad"}>add loads</Link>
                                     </li>
                                 </ul>
                             </div>

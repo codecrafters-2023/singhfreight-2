@@ -128,7 +128,7 @@ export default function Home({ notes }) {
         <>
             <DashboardLayout >
                 <div style={{ height: "100vh" }}>
-                    <Link href={'/loadPost'} className="bg-cyan-400 px-3 py-2 m-5">Add Load</Link>
+                    {/* <Link href={'/loadPost'} className="bg-cyan-400 px-3 py-2 m-5">Add Load</Link> */}
                     <div className='mt-5' >
                         <div >
                             {
@@ -212,7 +212,9 @@ export default function Home({ notes }) {
                                     )
                                 })
                             }
-                            <input type="text" value={show} onChange={(e) => setShow(e.target.value)} />
+                            {/* <input type="text" value={show} onChange={(e) => setShow(e.target.value)} /> */}
+
+                            {/* -------------Update Form Start----------------- */}
 
                             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{marginLeft:"-150px"}}>
                                 <div className="modal-dialog">
@@ -229,8 +231,8 @@ export default function Home({ notes }) {
                                                         {/* --------------Pickup Area Start--------------- */}
 
                                                         <div className='w-full'>
-                                                            <div>
-                                                                <label className='text-2xl' htmlFor="reffNo" >Reff No</label>
+                                                            {/* <div>
+                                                                <label className='text-lg text-slate-600 mb-2' htmlFor="reffNo" >Reff No</label>
                                                                 <Input
                                                                     size='xs'
                                                                     type="text"
@@ -242,9 +244,9 @@ export default function Home({ notes }) {
                                                                     onChange={e => setShow(true)}
                                                                 // onChange={e => setShow(e.target.value)}
                                                                 />
-                                                            </div>
+                                                            </div> */}
                                                             <div>
-                                                                <label className='text-2xl' htmlFor="reffNo" >Reff No</label>
+                                                                <label className='text-lg text-slate-600 mb-2' htmlFor="reffNo" >Reff No</label>
                                                                 <Input
                                                                     size='xs'
                                                                     type="text"
@@ -256,11 +258,13 @@ export default function Home({ notes }) {
                                                                     onChange={e => setReffNo(e.target.value)}
                                                                 />
                                                             </div>
-                                                            <h2>Pick Up</h2>
+
+                                                            <h4 className='mt-3'>Pick Up Address</h4>
+                                                            
                                                             <div className=' px-3 py-3'>
                                                                 <div className='flex gap-3'>
                                                                     <div className="mb-2 w-1/2">
-                                                                        <label className='text-2xl' htmlFor="PcityName" >City</label>
+                                                                        <label className='text-lg text-slate-600 mb-2' htmlFor="PcityName" >City</label>
                                                                         <Input
                                                                             size='md'
                                                                             type="text"
@@ -273,7 +277,7 @@ export default function Home({ notes }) {
                                                                         />
                                                                     </div>
                                                                     <div className="mb-2 w-1/3">
-                                                                        <label className='text-2xl' htmlFor="state" >State</label>
+                                                                        <label className='text-lg text-slate-600 mb-2' htmlFor="state" >State</label>
                                                                         <Input
                                                                             size='md'
                                                                             type="text"
@@ -286,7 +290,7 @@ export default function Home({ notes }) {
                                                                         />
                                                                     </div>
                                                                     <div className="mb-2 w-1/3">
-                                                                        <label className='text-2xl' htmlFor="zip_code" >Zip Code</label>
+                                                                        <label className='text-lg text-slate-600 mb-2' htmlFor="zip_code" >Zip Code</label>
                                                                         <Input
                                                                             size='md'
                                                                             type="text"
@@ -302,7 +306,7 @@ export default function Home({ notes }) {
 
                                                                 <div className='flex gap-3 mt-2'>
                                                                     <div className="mb-2 w-1/2">
-                                                                        <label className='text-2xl' htmlFor="Pdate" >Date</label>
+                                                                        <label className='text-lg text-slate-600 mb-2' htmlFor="Pdate" >Date</label>
                                                                         <Input
                                                                             size='md'
                                                                             type="date"
@@ -314,7 +318,7 @@ export default function Home({ notes }) {
                                                                         />
                                                                     </div>
                                                                     <div className="mb-2 w-1/3">
-                                                                        <label className='text-2xl' htmlFor="time" >Time Range</label>
+                                                                        <label className='text-lg text-slate-600 mb-2' htmlFor="time" >Time Range</label>
                                                                         <Input
                                                                             size='md'
                                                                             type="time"
@@ -326,7 +330,7 @@ export default function Home({ notes }) {
                                                                         />
                                                                     </div>
                                                                     <div className="mb-2 w-1/3">
-                                                                        <label className='text-2xl' htmlFor="time" >Time Range</label>
+                                                                        <label className='text-lg text-slate-600 mb-2' htmlFor="time" >Time Range</label>
                                                                         <Input
                                                                             size='md'
                                                                             type="time"
@@ -346,10 +350,12 @@ export default function Home({ notes }) {
                                                         {/* --------------Delivery Area Start--------------- */}
 
                                                         <div className='w-full '>
-                                                            <h2>Delivery</h2>
+
+                                                            <h4>Delivery Address</h4>
+                                                            
                                                             <div className='flex gap-3 px-3'>
                                                                 <div className="mb-2 w-1/2">
-                                                                    <label className='text-2xl'>City</label>
+                                                                    <label className='text-lg text-slate-600 mb-2'>City</label>
                                                                     <Input
                                                                         size='md'
                                                                         type="text"
@@ -363,7 +369,7 @@ export default function Home({ notes }) {
                                                                     />
                                                                 </div>
                                                                 <div className="mb-2 w-1/3">
-                                                                    <label className='text-2xl' htmlFor="state" >State</label>
+                                                                    <label className='text-lg text-slate-600 mb-2' htmlFor="state" >State</label>
                                                                     <Input
                                                                         size='md'
                                                                         type="text"
@@ -376,7 +382,7 @@ export default function Home({ notes }) {
                                                                     />
                                                                 </div>
                                                                 <div className="mb-2 w-1/3">
-                                                                    <label className='text-2xl' htmlFor="zip_code" >Zip Code</label>
+                                                                    <label className='text-lg text-slate-600 mb-2' htmlFor="zip_code" >Zip Code</label>
                                                                     <Input
                                                                         size='md'
                                                                         type="text"
@@ -396,7 +402,7 @@ export default function Home({ notes }) {
 
                                                                 <div className='flex gap-3'>
                                                                     <div className="mb-2 w-1/2">
-                                                                        <label className='text-2xl' htmlFor="date" >Date</label>
+                                                                        <label className='text-lg text-slate-600 mb-2' htmlFor="date" >Date</label>
                                                                         <Input
                                                                             size='md'
                                                                             type="date"
@@ -408,7 +414,7 @@ export default function Home({ notes }) {
                                                                         />
                                                                     </div>
                                                                     <div className="mb-2 w-1/3">
-                                                                        <label className='text-2xl' htmlFor="time" >Time Range</label>
+                                                                        <label className='text-lg text-slate-600 mb-2' htmlFor="time" >Time Range</label>
                                                                         <Input
                                                                             size='md'
                                                                             type="time"
@@ -420,7 +426,7 @@ export default function Home({ notes }) {
                                                                         />
                                                                     </div>
                                                                     <div className="mb-2 w-1/3">
-                                                                        <label className='text-2xl' htmlFor="time" >Time Range</label>
+                                                                        <label className='text-lg text-slate-600 mb-2' htmlFor="time" >Time Range</label>
                                                                         <Input
                                                                             size='md'
                                                                             type="time"
@@ -443,7 +449,7 @@ export default function Home({ notes }) {
                                                             <div className=' px-3 py-3'>
                                                                 <div className='flex gap-3'>
                                                                     <div className="mb-2 w-1/2">
-                                                                        <label className='text-2xl' htmlFor="price" >Offer Price</label>
+                                                                        <label className='text-lg text-slate-600 mb-2' htmlFor="price" >Offer Price</label>
                                                                         <Input
                                                                             size='md'
                                                                             type="text"
@@ -457,7 +463,7 @@ export default function Home({ notes }) {
                                                                         />
                                                                     </div>
                                                                     <div className="mb-2 w-1/3">
-                                                                        <label className='text-2xl' htmlFor="equipment" >Equ. Type</label>
+                                                                        <label className='text-lg text-slate-600 mb-2' htmlFor="equipment" >Equ. Type</label>
                                                                         <Select variant='flushed' placeholder='Select' value={equipment} onChange={e => setEquipment(e.target.value)}>
                                                                             <option value='Reefer'>Reefer</option>
                                                                             <option value='Power only'>Power Only</option>
@@ -465,7 +471,7 @@ export default function Home({ notes }) {
                                                                         </Select>
                                                                     </div>
                                                                     <div className="mb-2 w-1/3">
-                                                                        <label className='text-2xl' htmlFor="weight" >Weight</label>
+                                                                        <label className='text-lg text-slate-600 mb-2' htmlFor="weight" >Weight</label>
                                                                         <Input
                                                                             size='md'
                                                                             type="text"
@@ -490,7 +496,7 @@ export default function Home({ notes }) {
                                                             <div className=' px-3 py-3'>
                                                                 <div className='flex gap-3'>
                                                                     <div className="mb-2 w-1/2">
-                                                                        <label className='text-2xl' htmlFor="distance" >Miles</label>
+                                                                        <label className='text-lg text-slate-600 mb-2' htmlFor="distance" >Miles</label>
                                                                         <Input
                                                                             size='md'
                                                                             type="text"
@@ -504,7 +510,7 @@ export default function Home({ notes }) {
                                                                         />
                                                                     </div>
                                                                     <div className="mb-2 w-1/2">
-                                                                        <label className='text-2xl' htmlFor="commodity" >Commodity</label>
+                                                                        <label className='text-lg text-slate-600 mb-2' htmlFor="commodity" >Commodity</label>
                                                                         <Input
                                                                             size='md'
                                                                             type="text"
@@ -534,7 +540,7 @@ export default function Home({ notes }) {
                                                         {/* --------------Load Details Start--------------- */}
 
                                                         <div className="mb-2 px-3 py-3">
-                                                            <label htmlFor="content" className='text-2xl'>Load Details</label>
+                                                            <label htmlFor="content" className='text-lg text-slate-600 mb-2'>Load Details</label>
                                                             <textarea
                                                                 className="form-control"
                                                                 id="content"
@@ -556,6 +562,9 @@ export default function Home({ notes }) {
                                     </div>
                                 </div>
                             </div>
+
+                            {/* -------------Update Form End----------------- */}
+
                         </div>
                     </div>
                 </div >

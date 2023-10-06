@@ -4,10 +4,9 @@
 
 .ul_link_div {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    padding: 5px 0;
-   
+    padding: 5px 100px;
 }
 
 .ul {

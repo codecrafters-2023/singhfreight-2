@@ -1,14 +1,27 @@
+.map_div{
+    height: 70%;
+}
+.load_info_outer_div{
+    display: grid;
+    grid-template-columns: 1fr 45%;
+    width: 80%;
+}
+
+.load_info_div{
+    background-color: #fff;
+    height: 70%;
+    overflow-y: scroll;
+}
+
 .truck_div{
-    width: 68%;
+    width: 90%;
     color: red;
     font-size: 45px;
     overflow: hidden;
-    /* background: #000; */
 }
 .truck{
 
     position: relative;
-    /* left: -20px; */
     animation: truck 8s linear infinite ;
 }
 @keyframes truck {
@@ -20,5 +33,15 @@
     }
     100%{
         left: 110%;
+    }
+}
+
+@media (max-width: 1440px) {
+    .truck_div{
+        width: 80%;
+    }
+    .load_info_outer_div{
+        width: 100%;
+        padding: 0 20px;
     }
 }
