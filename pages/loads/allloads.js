@@ -124,30 +124,6 @@ export default function Home({ notes }) {
         })
     }
 
-    async function handleUpdateClick(noteId) {
-        try {
-            axios.put('/api/bookload', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ taskId: noteId._id }),
-            });
-
-
-            console.log(response);
-
-            if (response.status === 200) {
-                setShow(!true);
-            } else {
-                console.error('Failed to update task');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    }
-
-
     return (
         <>
             <DashboardLayout >
@@ -190,7 +166,7 @@ export default function Home({ notes }) {
                                                             </Tooltip> :
 
                                                             <Tooltip hasArrow label='Book load' bg='gray.300' color='black'>
-                                                                <button onClick={handleUpdateClick} className="bg-cyan-600 px-3 py-1 text-white text-lg" >Book load</button>
+                                                                <button  className="bg-cyan-600 px-3 py-1 text-white text-lg" >Book load</button>
                                                             </Tooltip>
                                                     }
 
