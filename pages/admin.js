@@ -17,6 +17,7 @@ import { FiEdit } from 'react-icons/fi';
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import DashboardLayout from "./loads/layout";
+import Link from "next/link";
 
 
 
@@ -43,7 +44,7 @@ const Admin = ({ users }) => {
 
     // ------------- Edit User Start ----------------->
 
-    const editForm = (name, email, role, noteId) => {
+    const editForm = (name, email, role, password, noteId) => {
         setName(name)
         setEmail(email)
         setRole(role)
@@ -54,7 +55,7 @@ const Admin = ({ users }) => {
         const noteObj = {
             name,
             email,
-            role
+            role,
         }
         // console.log(noteObj);
         await axios.put(`/api/updateUser?id=${noteId}`, noteObj)
@@ -77,7 +78,7 @@ const Admin = ({ users }) => {
                                     <Th style={{fontSize:"18px"}}>Name</Th>
                                     <Th style={{fontSize:"18px"}}>Email</Th>
                                     <Th style={{fontSize:"18px"}}>Role</Th>
-                                    <Th style={{fontSize:"18px"}}>Verify</Th>
+                                    <Th style={{fontSize:"18px"}}>Edit/Del.</Th>
                                 </Tr>
                             </Thead>
                             {users.map((user) => (
@@ -90,12 +91,13 @@ const Admin = ({ users }) => {
                                             <Td>
                                                 <div className='flex gap-4 items-start'>
                                                     <Tooltip hasArrow label='Edit' bg='gray.300' color='black'>
-                                                        <button onClick={(name, email, password, noteId) => editForm(user.name, user.email, user._id)} className='hover:text-green-600 text-2xl' title='Edit' ><FiEdit data-bs-toggle="modal" data-bs-target="#exampleModal" /></   button>
+                                                        <button onClick={(name, email, password, noteId) => editForm(user.name, user.email, user._id)} className='hover:text-green-600 text-2xl' title='Edit' ><FiEdit data-bs-toggle="modal" data-bs-target="#exampleModal" /></button>
                                                     </Tooltip>
 
                                                     <Tooltip hasArrow label='Delete' bg='gray.300' color='black'>
                                                         <button onClick={() => deleteNote(user._id)} className='hover:text-rose-600 text-2xl' title='Delete'><MdDelete /></button>
                                                     </Tooltip>
+
                                                 </div>
                                             </Td>
                                         </Tr>
@@ -107,14 +109,14 @@ const Admin = ({ users }) => {
 
                     {/* ----------------update form start---------------- */}
 
-                    <div class="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content"style={{width:"700px"}}>
-                                <div class="modal-header"style={{width:"700px"}}>
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Update Form</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div className="modal-dialog">
+                            <div className="modal-content"style={{width:"700px"}}>
+                                <div className="modal-header"style={{width:"700px"}}>
+                                    <h1 className="modal-title fs-5" id="exampleModalLabel">Update Form</h1>
+                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <div class="modal-body" style={{width:"700px"}}>
+                                <div className="modal-body" style={{width:"700px"}}>
                                     <div className='w-full m-auto  p-4 text-white rounded-lg'>
                                         <div>
                                             <label className="text-black">Name</label>
@@ -129,7 +131,7 @@ const Admin = ({ users }) => {
                                             <input onChange={(e) => setRole(e.target.value)} type='text' placeholder='Content' id='role' value={role} className='w-full p-2 text-slate-500 border border-gray-900 mb-4'/>
                                         </div>
                                         <div className='flex gap-3 '>
-                                            <button type="submit" class="btn btn-success" onClick={() => updateNote(noteId)}>Update</button>
+                                            <button type="submit" className="btn btn-success" onClick={() => updateNote(noteId)}>Update</button>
                                         </div>
                                     </div>
                                 </div>

@@ -26,8 +26,6 @@ const LoginForm = () => {
                 return;
             }
 
-            console.log(res);
-
             router.replace("/user");
 
         } catch (error) {

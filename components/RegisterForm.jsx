@@ -13,7 +13,7 @@ const RegisterForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [cpassword, setCPassword] = useState("");
-    const [role, setRole] = useState("");
+    const [role, setRole] = useState("user");
     const [error, setError] = useState("");
 
     const router = useRouter();
@@ -34,7 +34,7 @@ const RegisterForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        if (!name || !email || !password || !role) {
+        if (!name || !email || !password ) {
             { `${setError(<div style={{ color: "red" }}>All field are required</div>)}` }
             return;
         }
@@ -192,7 +192,7 @@ const RegisterForm = () => {
                         </div>
                         <Select variant='flushed' placeholder='Select' onChange={e => setRole(e.target.value)} value={role}>
                             <option value='admin'>Admin</option>
-                            <option value='user'>User</option>
+                            {/* <option value='user'>User</option> */}
                         </Select>
                         {
                             error &&
@@ -200,7 +200,7 @@ const RegisterForm = () => {
                                 {error}
                             </div>
                         }
-                        <button type="submit" className="btn btn-primary btn-block" >Sign Up</button>
+                            <button type="submit" className="btn btn-primary btn-block" >Sign Up</button>
                     </div>
                 </form>
                 <div className="text-center mt-3">

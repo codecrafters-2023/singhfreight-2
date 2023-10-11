@@ -375,10 +375,10 @@ const Postload = () => {
                                         </div>
                                         <div className='flex  mb-2 w-1/2' style={{ marginTop: "40px" }}>
                                             <div className="mb-2 w-1/2 g-3">
-                                                <input type='checkbox' value='multiple' onChange={handleChange} /><span className='ml-2'>Multiple</span>
+                                                <input type='checkbox' value='multiple' onChange={handleChange} /><span className='ml-2'>Multiple Rounds</span>
                                             </div>
                                             <div className="mb-2 w-1/2">
-                                                <input type='checkbox' value='round' onChange={handleChange} /><span className='ml-2'>Round</span>
+                                                <input type='checkbox' value='round' onChange={handleChange} /><span className='ml-2'>Round Trip</span>
                                             </div>
                                         </div>
                                     </div>
@@ -418,9 +418,8 @@ const Postload = () => {
 
                             {/* --------------Submit Button Start--------------- */}
 
-                            <div class="d-grid gap-2">
-                                {/* <button type='submit' className='w-full text-xl bg-green-400 px-3 py-2  rounded-lg'  >Submit</button> */}
-                                <button class="btn btn-success" type="submit">SUBMIT</button>
+                            <div className="d-grid gap-2">
+                                <button className="btn btn-success" type="submit">SUBMIT</button>
                             </div>
 
                             {/* --------------Submit Button End--------------- */}

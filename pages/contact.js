@@ -16,7 +16,7 @@ const page = () => {
         <>
             <section>
                 <div className={style.image_div}>
-                    <Image alt='' src={'/about1.jpg'} height={300} width={1000} className={style.back_image} />
+                    <Image alt='' src={'/contact.jpg'} height={300} width={1000} className={style.back_image} />
                     <div className={style.overlay}>
                         <div className={style.contact_info_div}>
                             <h1 className={style.contact_heading}>Contact Us</h1>

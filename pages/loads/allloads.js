@@ -3,12 +3,12 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { MdDelete } from 'react-icons/md';
 import { FiEdit } from 'react-icons/fi';
-import { AiFillLock } from 'react-icons/ai';
 import Link from 'next/link';
 import clientPromise from '../../lib/mongo';
 import { Checkbox, Input, Select, Tooltip } from '@chakra-ui/react';
 import style from '../../styles/allloads.module.css'
 import DashboardLayout from './layout';
+
 
 
 export default function Home({ notes }) {
@@ -124,6 +124,30 @@ export default function Home({ notes }) {
         })
     }
 
+    async function handleUpdateClick(noteId) {
+        try {
+            axios.put('/api/bookload', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ taskId: noteId._id }),
+            });
+
+
+            console.log(response);
+
+            if (response.status === 200) {
+                setShow(!true);
+            } else {
+                console.error('Failed to update task');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+
     return (
         <>
             <DashboardLayout >
@@ -159,49 +183,52 @@ export default function Home({ notes }) {
                                                         <Link href={`${note._id}`} className="bg-cyan-600 px-3 py-1 text-white text-lg" >View Detail</Link>
                                                     </Tooltip>
 
-                                                    <Tooltip hasArrow label='Book load' bg='gray.300' color='black'>
-                                                        <button onClick={() => handleBookLoad(noteId)} className="bg-cyan-600 px-3 py-1 text-white text-lg" >Book load</button>
-                                                    </Tooltip>
-
                                                     {
-                                                        note.show ? <div><AiFillLock /></div>
-                                                            :
-                                                            <div >
-                                                                <Tooltip hasArrow label='Edit' bg='gray.300' color='black'>
-                                                                    <button onClick={(
-                                                                    ) => editForm(
-                                                                        note.reffNo,
-                                                                        note.PcityName,
-                                                                        note.PState,
-                                                                        note.PZipCode,
-                                                                        note.Pdate,
-                                                                        note.PTimeOne,
-                                                                        note.PTimeTwo,
-                                                                        note.DcityName,
-                                                                        note.DState,
-                                                                        note.DZipCode,
-                                                                        note.Ddate,
-                                                                        note.DTimeOne,
-                                                                        note.DTimeTwo,
-                                                                        note.price,
-                                                                        note.equipment,
-                                                                        note.weight,
-                                                                        note.distance,
-                                                                        note.commodity,
-                                                                        note.multiple,
-                                                                        note.rounds,
-                                                                        note.loadInfo,
-                                                                        note.show,
-                                                                        note._id)} className='hover:text-green-600 text-2xl' ><FiEdit data-bs-toggle="modal" data-bs-target="#exampleModal" /></   button>
-                                                                </Tooltip>
-                                                            </div>
+                                                        note.show ?
+                                                            <Tooltip hasArrow label='Booked' bg='gray.300' color='black'>
+                                                                <div className="bg-cyan-600 px-3 py-1 text-white text-lg" >Booked</div>
+                                                            </Tooltip> :
+
+                                                            <Tooltip hasArrow label='Book load' bg='gray.300' color='black'>
+                                                                <button onClick={handleUpdateClick} className="bg-cyan-600 px-3 py-1 text-white text-lg" >Book load</button>
+                                                            </Tooltip>
                                                     }
 
-                                                    {/* <button onClick={() =>
+                                                    <div >
+                                                        <Tooltip hasArrow label='Edit' bg='gray.300' color='black'>
+                                                            <button onClick={(
+                                                            ) => editForm(
+                                                                note.reffNo,
+                                                                note.PcityName,
+                                                                note.PState,
+                                                                note.PZipCode,
+                                                                note.Pdate,
+                                                                note.PTimeOne,
+                                                                note.PTimeTwo,
+                                                                note.DcityName,
+                                                                note.DState,
+                                                                note.DZipCode,
+                                                                note.Ddate,
+                                                                note.DTimeOne,
+                                                                note.DTimeTwo,
+                                                                note.price,
+                                                                note.equipment,
+                                                                note.weight,
+                                                                note.distance,
+                                                                note.commodity,
+                                                                note.multiple,
+                                                                note.rounds,
+                                                                note.loadInfo,
+                                                                note.show,
+                                                                note._id)} className='hover:text-green-600 text-2xl' ><FiEdit data-bs-toggle="modal" data-bs-target="#exampleModal" /></   button>
+                                                        </Tooltip>
+                                                    </div>
+
+                                                    <button onClick={() =>
                                                         editValue(
                                                             note.show,
                                                             note._id
-                                                        )}>book</button> */}
+                                                        )}>book</button>
 
                                                     <Tooltip hasArrow label='Delete' bg='gray.300' color='black'>
                                                         <button onClick={() => deleteNote(note._id)} className='hover:text-rose-600 text-2xl' ><MdDelete /></button>
@@ -212,11 +239,11 @@ export default function Home({ notes }) {
                                     )
                                 })
                             }
-                            {/* <input type="text" value={show} onChange={(e) => setShow(e.target.value)} /> */}
+                            <input type="text" value={show} onChange={(e) => setShow(e.target.value)} />
 
                             {/* -------------Update Form Start----------------- */}
 
-                            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{marginLeft:"-150px"}}>
+                            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ marginLeft: "-150px" }}>
                                 <div className="modal-dialog">
                                     <div className="modal-content" style={{ width: "1000px" }}>
                                         <div className="modal-header" style={{ width: "1000px" }}>
@@ -231,20 +258,20 @@ export default function Home({ notes }) {
                                                         {/* --------------Pickup Area Start--------------- */}
 
                                                         <div className='w-full'>
-                                                            {/* <div>
-                                                                <label className='text-lg text-slate-600 mb-2' htmlFor="reffNo" >Reff No</label>
+                                                            <div>
+                                                                <label className='text-lg text-slate-600 mb-2' htmlFor="load_book" >load Book</label>
                                                                 <Input
                                                                     size='xs'
                                                                     type="text"
                                                                     className="form-control w-40"
-                                                                    id="reffNo"
-                                                                    name="reffNo"
-                                                                    placeholder='Reff no'
+                                                                    id="load_book"
+                                                                    name="load_book"
+                                                                    placeholder=''
                                                                     value={show}
-                                                                    onChange={e => setShow(true)}
-                                                                // onChange={e => setShow(e.target.value)}
+                                                                    // onChange={e => setShow(true)}
+                                                                    onChange={e => setShow(e.target.value)}
                                                                 />
-                                                            </div> */}
+                                                            </div>
                                                             <div>
                                                                 <label className='text-lg text-slate-600 mb-2' htmlFor="reffNo" >Reff No</label>
                                                                 <Input
@@ -260,7 +287,7 @@ export default function Home({ notes }) {
                                                             </div>
 
                                                             <h4 className='mt-3'>Pick Up Address</h4>
-                                                            
+
                                                             <div className=' px-3 py-3'>
                                                                 <div className='flex gap-3'>
                                                                     <div className="mb-2 w-1/2">
@@ -352,7 +379,7 @@ export default function Home({ notes }) {
                                                         <div className='w-full '>
 
                                                             <h4>Delivery Address</h4>
-                                                            
+
                                                             <div className='flex gap-3 px-3'>
                                                                 <div className="mb-2 w-1/2">
                                                                     <label className='text-lg text-slate-600 mb-2'>City</label>
@@ -568,13 +595,6 @@ export default function Home({ notes }) {
                         </div>
                     </div>
                 </div >
-
-
-                {/* <button type="button" class="btn btn-primary" >
-                    Launch demo modal
-                </button> */}
-
-
             </DashboardLayout >
         </>
     )

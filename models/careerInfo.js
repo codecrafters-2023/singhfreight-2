@@ -3,6 +3,11 @@ import mongoose, { Schema } from "mongoose";
 const careerSchema = new Schema({
     mcnumber: {
         type: String,
+        required: true,
+    },
+    insuranceExpiry: {
+        type: String,
+        required: true,
     },
 },
 {

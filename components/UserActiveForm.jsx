@@ -8,9 +8,9 @@ const UserActiveForm = () => {
 
     const [mcnumber, setMcNumber] = useState();
     const [insuranceExpiry, setInsuranceExpiry] = useState();
+    const [error, setError] = useState();
 
     const toast = useToast()
-    const router = useRouter();
 
     const newObj = {
         mcnumber,
@@ -19,6 +19,11 @@ const UserActiveForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!mcnumber || !insuranceExpiry ) {
+            { `${setError(<div style={{ color: "red" }}>All field are required</div>)}` }
+            return;
+        }
 
         try {
 
@@ -65,6 +70,11 @@ const UserActiveForm = () => {
                         <label htmlFor="exampleFormControlTextarea1" className="form-label">Insurance Expire</label>
                         <input type='date' className="form-control mb-4" id="exampleFormControlTextarea1" placeholder="Please enter your Insurance Expiry..." value={insuranceExpiry} onChange={(e) => setInsuranceExpiry(e.target.value)}/>
                     </div>
+                    {
+                        error && <div>
+                            {error}
+                        </div>
+                    }
                     <div className="d-grid gap-2">
                         <button className="btn btn-success" type="submit" onClick={handleSubmit}>Submit</button>
                     </div>

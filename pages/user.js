@@ -136,9 +136,16 @@ const Alldata = ({ loads }) => {
                                                         <Link href={`/loads/${note._id}`} className="bg-cyan-600 px-3 py-1 text-white text-lg" >View Detail</Link>
                                                     </Tooltip>
 
+                                                    {
+                                                        note.show?
+                                                        <Tooltip hasArrow label='Booked' bg='gray.300' color='black'>
+                                                        <div className="bg-cyan-600 px-3 py-1 text-white text-lg" >Booked</div>
+                                                    </Tooltip>:
+                                                    
                                                     <Tooltip hasArrow label='Book load' bg='gray.300' color='black'>
                                                         <button onClick={() => handleBookLoad(noteId)} className="bg-cyan-600 px-3 py-1 text-white text-lg" >Book load</button>
                                                     </Tooltip>
+                                                    }
                                                 </div>
                                             </div>
                     </>
