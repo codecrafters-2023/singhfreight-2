@@ -17,9 +17,6 @@ import { FiEdit } from 'react-icons/fi';
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import DashboardLayout from "./loads/layout";
-import Link from "next/link";
-
-
 
 const Admin = ({ users }) => {
 

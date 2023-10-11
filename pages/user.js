@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRange } from 'react-date-range';
-import { Input, Tooltip, } from '@chakra-ui/react'
+import { Tooltip, } from '@chakra-ui/react'
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import style from '../styles/allloads.module.css'
