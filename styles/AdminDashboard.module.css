@@ -1,0 +1,65 @@
+.main_div {
+    width: 100%;
+    height: auto;
+    margin-top: 30px;
+    padding: 20px;
+    /* box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); */
+    /* box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); */
+    box-shadow: 0 20px 50px -5px rgb(0 0 0 / 0.25);
+}
+
+.loads_main_div {
+    display: grid;
+    grid-template-columns: 1fr 1fr 40%;
+    width: 100%;
+    background-color: #fff;
+    padding: 10px 0;
+    border: 2px solid #929292;
+    border-radius: 10px;
+    /* transition: all 0.3s; */
+    margin-bottom: 25px;
+}
+
+.loads_main_div:hover {
+    border: 2px solid #000;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.price_div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.price_inner_div {
+    display: flex;
+    flex-direction: column;
+    gap: 10;
+}
+
+.Pickup_load_div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.dilivery_load_div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.button_div {
+    /* ' flex items-center px-5 justify-around' */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 50px;
+}
+
+.td_div:hover{
+    background-color: rgb(250, 250, 250);
+}

@@ -25,7 +25,10 @@ export default function DashboardLayout({
                                         <Link href={"/addLoad"}>add loads</Link>
                                     </li>
                                     <li>
-                                        <Link href={"/userActiveForm"}>Active User</Link>
+                                        <Link href={"/userActiveForm"}>activate mcnumber</Link>
+                                    </li>
+                                    <li>
+                                        <Link href={"/activeUsers"}>Active User</Link>
                                     </li>
                                 </ul>
                             </div>

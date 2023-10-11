@@ -5,6 +5,7 @@ import axios from 'axios';
 
 const UserActiveForm = () => {
 
+    const [companyName, setCompantName] = useState();
     const [mcnumber, setMcNumber] = useState();
     const [insuranceExpiry, setInsuranceExpiry] = useState();
     const [error, setError] = useState();
@@ -12,6 +13,7 @@ const UserActiveForm = () => {
     const toast = useToast()
 
     const newObj = {
+        companyName,
         mcnumber,
         insuranceExpiry
     }
@@ -19,7 +21,7 @@ const UserActiveForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!mcnumber || !insuranceExpiry ) {
+        if (!mcnumber || !insuranceExpiry || !companyName ) {
             { `${setError(<div style={{ color: "red" }}>All field are required</div>)}` }
             return;
         }
@@ -34,6 +36,7 @@ const UserActiveForm = () => {
             if (res) {
                 setMcNumber("")
                 setInsuranceExpiry("")
+                setCompantName("")
             } else {
                 toast({
                     title: 'Error While Career Submit',
@@ -62,12 +65,16 @@ const UserActiveForm = () => {
             <DashboardLayout>
                 <div className='w-1/2 mt-10 border border-slate-600 p-3'>
                     <div className="mb-3">
-                        <label htmlFor="exampleFormControlInput1" className="form-label">Mc Number</label>
-                        <input type="email" className="form-control mb-3" id="exampleFormControlInput1" placeholder="Please enter your Mc Number..." value={mcnumber} onChange={(e) => setMcNumber(e.target.value)} />
+                        <label htmlFor="companyName" className="form-label text-lg">Company Name</label>
+                        <input type="text" className="form-control mb-3" id="companyName" placeholder="Please enter your Company Name..." value={companyName} onChange={(e) => setCompantName(e.target.value)} />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="exampleFormControlTextarea1" className="form-label">Insurance Expire</label>
-                        <input type='date' className="form-control mb-4" id="exampleFormControlTextarea1" placeholder="Please enter your Insurance Expiry..." value={insuranceExpiry} onChange={(e) => setInsuranceExpiry(e.target.value)}/>
+                        <label htmlFor="mcNumber" className="form-label text-lg">Mc Number</label>
+                        <input type="text" className="form-control mb-3" id="mcNumber" placeholder="Please enter your Mc Number..." value={mcnumber} onChange={(e) => setMcNumber(e.target.value)} />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="insuranceExpirary" className="form-label text-lg">Insurance Expiry</label>
+                        <input type='date' className="form-control mb-4" id="insuranceExpirary" placeholder="Please enter your Insurance Expiry..." value={insuranceExpiry} onChange={(e) => setInsuranceExpiry(e.target.value)}/>
                     </div>
                     {
                         error && <div>

@@ -8,11 +8,11 @@ async function handler(req, res) {
     }
 
     try {
-        const { mcnumber, name, email, password, role } = req.body;
+        const { companyName, firstName, lastName, powerUnit, dryVans, reefers, email, password, role } = req.body;
         await mongoose.connect(process.env.MONGODB_URI, {
             useNewUrlParser: true,
         }).then(() => console.log("DB connected"));
-        let newNote = new Note({ mcnumber, name, email, password, role });
+        let newNote = new Note({ companyName, firstName, lastName, powerUnit, dryVans, reefers, email, password, role });
         await newNote.save();
         console.log(newNote);
     } catch (error) {

@@ -39,7 +39,7 @@ const ProductDetail = () => {
   return (
     <>
       <div >
-        <div className=' py-3'>
+        <div className='px-3 py-3'>
           {
             (session?.user.role === 'admin')? <Link href= {'/loads/allloads'} className='text-xl hover:underline hover:text-slate-500'>GET BACK LOADS</Link>: <Link href= {'/user'} className='text-xl hover:underline hover:text-slate-500'>GET BACK TO LOADS</Link>
           }

@@ -7,7 +7,7 @@ import { MdEmail } from 'react-icons/md';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useSession } from 'next-auth/react'
 
-const Header = () => {
+const MainHeader = () => {
 
     const { data: session } = useSession();
 
@@ -53,4 +53,4 @@ const Header = () => {
     )
 }
 
-export default Header
+export default MainHeader

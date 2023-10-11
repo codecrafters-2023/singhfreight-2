@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import style from '../styles/Register.module.css'
-import { Select, useToast } from '@chakra-ui/react';
+import { Input, Select, Stack, useToast } from '@chakra-ui/react';
 import axios from 'axios';
 
 const RegisterForm = () => {
@@ -30,11 +30,11 @@ const RegisterForm = () => {
         role
     }
 
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        if (!name || !email || !password ) {
+
+        if (!name || !email || !password) {
             { `${setError(<div style={{ color: "red" }}>All field are required</div>)}` }
             return;
         }
@@ -45,21 +45,19 @@ const RegisterForm = () => {
                 headers: {
                     "Content_type": "application/json",
                 },
-                body: JSON.stringify({ mcnumber })
+                body: JSON.stringify({ email })
             });
 
             const { user } = await resUserExists.json();
 
-            if (!user) {
+            if (user) {
                 toast({
-                    title: 'First you have to set a career information',
+                    title: 'Your are Already Exists ',
                     status: 'info',
                     duration: 9000,
                     isClosable: true,
                     position: 'top',
                 });
-                router.push('https://onboard.dat.com/singhfreight')
-                return;
             }
 
 
@@ -127,13 +125,14 @@ const RegisterForm = () => {
                 {/* ---------------- Form Start ------------------> */}
 
                 <h2 className="text-center">Sign Up</h2>
-                <form onSubmit={handleSubmit}>
+                {/* <form onSubmit={handleSubmit}>
                     <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-                        <div className="form-group">
+                        <div >
                             <label htmlFor="mcnumber">Mc Number</label>
-                            <input
+                            <Input
+                                variant={'flushed'}
                                 type="text"
-                                className="form-control"
+
                                 id="mcnumber"
                                 placeholder="Mc Number"
                                 autoComplete='off'
@@ -141,6 +140,7 @@ const RegisterForm = () => {
                                 onChange={e => setMcNumber(e.target.value)}
                             />
                         </div>
+                            <Input variant='flushed' placeholder='Flushed' />
 
                         <div className="form-group">
                             <label htmlFor="fullname">Full Name</label>
@@ -192,7 +192,6 @@ const RegisterForm = () => {
                         </div>
                         <Select variant='flushed' placeholder='Select' onChange={e => setRole(e.target.value)} value={role}>
                             <option value='admin'>Admin</option>
-                            {/* <option value='user'>User</option> */}
                         </Select>
                         {
                             error &&
@@ -200,9 +199,15 @@ const RegisterForm = () => {
                                 {error}
                             </div>
                         }
-                            <button type="submit" className="btn btn-primary btn-block" >Sign Up</button>
+                        <button type="submit" className="btn btn-primary btn-block" >Sign Up</button>
                     </div>
-                </form>
+                </form> */}
+                <Stack spacing={3}>
+                    <Input variant='outline' placeholder='Outline' />
+                    <Input variant='filled' placeholder='Filled' />
+                    <Input variant='flushed' placeholder='Flushed' />
+                    <Input variant='unstyled' placeholder='Unstyled' />
+                </Stack>
                 <div className="text-center mt-3">
                     Already have an account? <Link href="/signin" className="text-primary">Sign In</Link>
                 </div>

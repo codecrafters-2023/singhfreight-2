@@ -1,143 +1,102 @@
 import React, { useState } from "react";
 import clientPromise from "../lib/mongo";
-import {
-    Table,
-    Thead,
-    Tbody,
-    Tr,
-    Th,
-    Td,
-    TableContainer,
-    Button,
-    Input,
-    Tooltip,
-} from '@chakra-ui/react'
-import { MdDelete } from 'react-icons/md';
-import { FiEdit } from 'react-icons/fi';
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import DashboardLayout from "./loads/layout";
+import style from '../styles/AdminDashboard.module.css'
+import Link from "next/link";
+import {
+    Tbody,
+    Tr,
+    Td,
+    Tooltip,
+    TableContainer,
+    Table,
+    Thead,
+    Th,
+} from '@chakra-ui/react'
 
-const Admin = ({ users }) => {
-
-    const router = useRouter();
-
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [role, setRole] = useState('');
-    const [noteId, setNoteId] = useState('');
-
-
-    // -----------------Delete User Start ------------------->
-
-    const deleteNote = async (noteId) => {
-        axios.delete(`/api/deleteUser?id=${noteId}`).then(() => {
-            router.refresh()
-        })
-    }
-
-    // ------------- Delete User End ----------------->
-
-
-    // ------------- Edit User Start ----------------->
-
-    const editForm = (name, email, role, password, noteId) => {
-        setName(name)
-        setEmail(email)
-        setRole(role)
-        setNoteId(noteId)
-    }
-
-    const updateNote = async (noteId) => {
-        const noteObj = {
-            name,
-            email,
-            role,
-        }
-        // console.log(noteObj);
-        await axios.put(`/api/updateUser?id=${noteId}`, noteObj)
-            .then(() => {
-                router.refresh();
-            })
-    }
-
-    // ------------- Edit User End ----------------->
-
+const Admin = ({ users, loads }) => {
     return (
         <>
             <DashboardLayout>
-                <div style={{ height: "100vh", }} className="w-full">
-                    <h1 style={{ margin: "20px 0 100px 0" }}>All Users </h1>
-                    <TableContainer >
-                        <Table variant='simple'>
-                            <Thead>
-                                <Tr>
-                                    <Th style={{fontSize:"18px"}}>Name</Th>
-                                    <Th style={{fontSize:"18px"}}>Email</Th>
-                                    <Th style={{fontSize:"18px"}}>Role</Th>
-                                    <Th style={{fontSize:"18px"}}>Edit/Del.</Th>
-                                </Tr>
-                            </Thead>
-                            {users.map((user) => (
-                                <>
-                                    <Tbody key={user._id}>
-                                        <Tr>
-                                            <Td >{user.name}</Td>
-                                            <Td>{user.email}</Td>
-                                            <Td>{user.role}</Td>
-                                            <Td>
-                                                <div className='flex gap-4 items-start'>
-                                                    <Tooltip hasArrow label='Edit' bg='gray.300' color='black'>
-                                                        <button onClick={(name, email, password, noteId) => editForm(user.name, user.email, user._id)} className='hover:text-green-600 text-2xl' title='Edit' ><FiEdit data-bs-toggle="modal" data-bs-target="#exampleModal" /></button>
-                                                    </Tooltip>
-
-                                                    <Tooltip hasArrow label='Delete' bg='gray.300' color='black'>
-                                                        <button onClick={() => deleteNote(user._id)} className='hover:text-rose-600 text-2xl' title='Delete'><MdDelete /></button>
-                                                    </Tooltip>
-
+                <div>
+                    <div>
+                        <h3 className="mt-3">Recently Added Loads</h3>
+                        <div className={style.main_div}>
+                            {
+                                loads.map((load) => {
+                                    return (
+                                        <>
+                                            <div className={style.loads_main_div}>
+                                                <div className={style.price_div}>
+                                                    <div className={style.price_inner_div}>
+                                                        <span className='text-5xl font-bold text-cyan-600'>${load.price}</span>
+                                                        <span className=' text-sm text-slate-500'>FTL- {load.equipment} </span>
+                                                    </div>
                                                 </div>
-                                            </Td>
-                                        </Tr>
-                                    </Tbody>
-                                </>
-                            ))}
-                        </Table>
-                    </TableContainer>
+                                                <div>
+                                                    <div className={style.Pickup_load_div}>
+                                                        <b className='flex font-normal justify-end'>{load.PcityName}, {load.PState}</b>
+                                                        <span className='text-sm font-light flex justify-end'> {load.Pdate}, {load.PTimeOne}-{load.PTimeTwo} </span>
+                                                    </div>
+                                                    <br />
+                                                    <div className={style.dilivery_load_div}>
+                                                        <b className='flex font-normal justify-end'>{load.DcityName}, {load.DState}</b>
+                                                        <span className='text-sm font-light flex justify-end'> {load.Ddate}, {load.DTimeOne}-{load.DTimeTwo} </span>
+                                                    </div>
+                                                </div>
+                                                <div className={style.button_div}>
+                                                    <Tooltip hasArrow label='View Details' bg='gray.300' color='black'>
+                                                        <Link href={`/loads/${load._id}`} className="bg-cyan-600 px-3 py-1 text-white text-lg" >View Detail</Link>
+                                                    </Tooltip>
+                                                    {
+                                                        load.show ?
+                                                            <Tooltip hasArrow label='Booked' bg='gray.300' color='black'>
+                                                                <div className="bg-cyan-600 px-3 py-1 text-white text-lg" >Booked</div>
+                                                            </Tooltip> :
 
-                    {/* ----------------update form start---------------- */}
-
-                    <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div className="modal-dialog">
-                            <div className="modal-content"style={{width:"700px"}}>
-                                <div className="modal-header"style={{width:"700px"}}>
-                                    <h1 className="modal-title fs-5" id="exampleModalLabel">Update Form</h1>
-                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div className="modal-body" style={{width:"700px"}}>
-                                    <div className='w-full m-auto  p-4 text-white rounded-lg'>
-                                        <div>
-                                            <label className="text-black">Name</label>
-                                            <input type='text' placeholder='Title' id='name' value={name} onChange={(e) => setName(e.target.value)} className='w-full p-2 text-slate-500 border border-gray-900 mb-4' />
-                                        </div>
-                                        <div>
-                                            <label className="text-black">Email</label>
-                                            <input onChange={(e) => setEmail(e.target.value)} type='text' placeholder='Content' id='email' value={email} className='w-full p-2 text-slate-500 border border-gray-900 mb-4'/>
-                                        </div>
-                                        <div>
-                                            <label className="text-black">Role</label>
-                                            <input onChange={(e) => setRole(e.target.value)} type='text' placeholder='Content' id='role' value={role} className='w-full p-2 text-slate-500 border border-gray-900 mb-4'/>
-                                        </div>
-                                        <div className='flex gap-3 '>
-                                            <button type="submit" className="btn btn-success" onClick={() => updateNote(noteId)}>Update</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                                            <Tooltip hasArrow label='Book load' bg='gray.300' color='black'>
+                                                                <button className="bg-cyan-600 px-3 py-1 text-white text-lg" >Book load</button>
+                                                            </Tooltip>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </>
+                                    )
+                                })
+                            }
                         </div>
                     </div>
+                </div>
 
-                    {/* ----------------update form end---------------- */}
 
+                <div>
+                    <h3 className="mt-5">Recently Active Users</h3>
+                    <div className={style.main_div}>
+                        <TableContainer >
+                            <Table variant='simple'>
+                                <Thead>
+                                    <Tr>
+                                        <Th style={{ fontSize: "18px" }}>Name</Th>
+                                        <Th style={{ fontSize: "18px" }}>Email</Th>
+                                        <Th style={{ fontSize: "18px" }}>Role</Th>
+                                    </Tr>
+                                </Thead>
+                                {users.map((user) => (
+                                    <>
+                                        <Tbody key={user._id}>
+                                            <Tr className={style.td_div}>
+                                                <Td>{user.name}</Td>
+                                                <Td>{user.email}</Td>
+                                                <Td>{user.role}</Td>
+                                            </Tr>
+                                        </Tbody>
+                                    </>
+                                ))}
+                            </Table>
+                        </TableContainer>
+                    </div>
                 </div>
             </DashboardLayout>
         </>
@@ -156,10 +115,18 @@ export async function getServerSideProps() {
             .collection("users")
             .find({})
             .sort({ _id: -1 })
+            .limit(5)
+            .toArray();
+
+        const loads = await db
+            .collection("loads")
+            .find({})
+            .sort({ _id: -1 })
+            .limit(3)
             .toArray();
 
         return {
-            props: { users: JSON.parse(JSON.stringify(users)) },
+            props: { users: JSON.parse(JSON.stringify(users)), loads: JSON.parse(JSON.stringify(loads)) },
         };
     } catch (e) {
         console.error(e);

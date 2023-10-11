@@ -1,10 +1,22 @@
 import mongoose, { Schema } from "mongoose";
 
 const noteSchema = new Schema({
-    mcnumber: {
+    companyName: {
         type: String,
     },
-    name: {
+    firstName: {
+        type: String,
+    },
+    lastName: {
+        type: String,
+    },
+    powerUnit: {
+        type: String,
+    },
+    dryVans: {
+        type: String,
+    },
+    reefers: {
         type: String,
     },
     email: {

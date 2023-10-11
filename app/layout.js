@@ -1,7 +1,7 @@
 import { AuthProvider } from "./Provider";
 import "../pages/style.css";
 import "bootstrap/dist/css/bootstrap.css";
-import Header from "@/components/MainHeader";
+// import Header from "@/components/MainHeader";
 
 export const metadata = {
   title: "Singhfreight Inc",
@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <AuthProvider>
-          <Header />
+          {/* <Header /> */}
           {children}
         </AuthProvider>
       </body>

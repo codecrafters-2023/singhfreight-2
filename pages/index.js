@@ -26,10 +26,10 @@ export default function Home() {
                                 </button>
                                 </Link>
 
-                                <Link href={'/signup'} ><button className={style.button}>
+                                <Link href={'/checkMcNumber'} ><button className={style.button}>
                                     <span className={style.button_lg}>
                                         <span className={style.button_sl}></span>
-                                        <span className={style.button_text}>SIGN UP</span>
+                                        <span className={style.button_text}>CREATE ACCOUNT</span>
                                     </span>
                                 </button>
                                 </Link>
