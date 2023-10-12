@@ -54,7 +54,7 @@ const StickyHeader = () => {
                         <div className={style.ul_link_div}>
                             <ul className={style.ul}>
                                 <li >
-                                    <Link href={'/'} className={style.link} >dasboard</Link >
+                                    <Link href={'/'} className={style.link} >dashboard</Link >
                                 </li>
                                 <li >
                                     <Link href={'/about'} className={style.link} >ABOUT</Link >

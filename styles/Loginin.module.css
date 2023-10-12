@@ -28,7 +28,7 @@
 }
 
 .label{
-    color: #fff;
+    color: #000;
     font-size: 18px;
     margin-bottom: 10px;
 }
@@ -50,4 +50,14 @@
 }
 .form_input::placeholder{
     color: #000;
+}
+
+.password_eye{
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    font-size: 20px;
+}
+.password_form_input:focus{
+    border: 2px solid rgb(22, 93, 207);
 }

@@ -19,7 +19,7 @@ const CheckMcNumber = () => {
         }
 
         try {
-            const resUserExists = await fetch("api/userExists", {
+            const resUserExists = await fetch("api/mcNumberExists", {
                 method: "POST",
                 headers: {
                     "Content_type": "application/json",

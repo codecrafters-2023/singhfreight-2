@@ -5,6 +5,8 @@ import React, { useState } from 'react'
 import { signIn } from 'next-auth/react'
 import Image from 'next/image';
 import style from '../styles/Loginin.module.css'
+import { AiFillEye } from 'react-icons/ai';
+import { BsEye } from 'react-icons/bs';
 // import style from '../styles/Register.module.css'
 
 const LoginForm = () => {
@@ -12,6 +14,8 @@ const LoginForm = () => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const router = useRouter();
+
+    const [show, setShow] = useState(false);
 
 
     const handleSubmit = async (e) => {
@@ -53,16 +57,17 @@ const LoginForm = () => {
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
-                        <div className="form-group flex flex-col">
+                        <div className="form-group flex flex-col relative">
                             <label className={style.label} htmlFor="password">Password</label>
                             <input
-                                type="password"
+                                type={`${show ? "text" : "password"}`}
                                 className={style.form_input}
                                 id="password"
                                 placeholder="Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
+                            <span className={style.password_eye} onClick={() => setShow(!show)}><BsEye /></span>
                         </div>
                         {
                             error &&
@@ -71,7 +76,7 @@ const LoginForm = () => {
                             </div>
                         }
                         {/* <button type="submit" className="btn btn-primary btn-block" style={{ marginTop: "10px" }}>Login</button> */}
-                        <button type="submit" class="px-5 py-2.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign Up</button>
+                        <button type="submit" className="px-5 py-2.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign In</button>
                     </div>
                 </form>
             </div>
