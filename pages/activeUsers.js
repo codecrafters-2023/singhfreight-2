@@ -19,8 +19,6 @@ import style from '../styles/ActiveUser.module.css'
 
 const ActiveUsers = ({ users }) => {
 
-    console.log(users);
-
     const router = useRouter();
 
     const [name, setName] = useState('');
@@ -83,7 +81,7 @@ const ActiveUsers = ({ users }) => {
                                 <>
                                     <Tbody key={user._id}>
                                         <Tr className={style.tr_div}>
-                                            <Td >{user.name}</Td>
+                                            <Td >{user.firstName}</Td>
                                             <Td>{user.email}</Td>
                                             <Td>{user.role}</Td>
                                             <Td>

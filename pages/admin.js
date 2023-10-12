@@ -87,7 +87,7 @@ const Admin = ({ users, loads }) => {
                                     <>
                                         <Tbody key={user._id}>
                                             <Tr className={style.td_div}>
-                                                <Td>{user.name}</Td>
+                                                <Td>{user.firstName}</Td>
                                                 <Td>{user.email}</Td>
                                                 <Td>{user.role}</Td>
                                             </Tr>
