@@ -36,10 +36,11 @@ const Footer = () => {
                                 <h1 className={style.quick_link_heading}>Our Locations</h1>
 
                                 <div className={style.footer_contact_info_div}>
-                                    <b>Address:</b>
-                                    <b>Email:</b>
-                                    <b>Contact:</b>
-                                </div>
+                                <b>Address:<br /><span style={{fontWeight:"500"}}>4730 S Fort Apache Rd,<br />
+                                    Suite 300 Las Vegas, NV 89147</span></b>
+                                <b>Email:<span style={{marginLeft:"10px", fontWeight:"500"}}>sales@singhfreight.com</span></b>
+                                <b>Contact:<span style={{marginLeft:"10px", fontWeight:"500"}}>+1 (725) 444-1944</span></b>
+                            </div>
                         </div>
                     </div>
                 </div>

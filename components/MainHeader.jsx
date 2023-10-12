@@ -21,7 +21,7 @@ const MainHeader = () => {
                             <span className={style.header_icon}><MdEmail /></span>
                             <span className={style.phone_info}>
                                 <span>Email:</span>
-                                <Link href={'#'} className={style.email_link}>Company Email</Link>
+                                <Link href={'#'} className={style.email_link}>sales@singhfreight.com</Link>
                             </span>
                         </div>
                     </div>
@@ -41,7 +41,7 @@ const MainHeader = () => {
                             <span className={style.header_icon}><FaPhoneVolume /></span>
                             <span className={style.phone_info}>
                                 <span  >CONTACT</span>
-                                <Link href={'#'} className={style.phone_link}>Company tel</Link>
+                                <Link href={'#'} className={style.phone_link}>+1 (725) 444-1944</Link>
                             </span>
                         </div>
                     </div>
