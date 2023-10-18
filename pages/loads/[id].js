@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { TbTruckDelivery } from 'react-icons/tb';
 import style from '../../styles/LoadDetailPage.module.css'
 import {
@@ -8,15 +8,27 @@ import {
   Tr,
   Td,
   TableContainer,
+  Input,
+  Select,
 } from '@chakra-ui/react'
 import Link from 'next/link';
 import Loader from '../loader'
 import { useSession } from 'next-auth/react';
+import { Autocomplete, DirectionsRenderer, GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+
+const center = { lat: 48.8584, lng: 2.2945 };
+
 
 const ProductDetail = () => {
+
+  const [direction, setDirection] = useState(null);
+  const [distanceReff, setDistanceReff] = useState("");
+  const [map, setMap] = useState(null);
+
   const router = useRouter();
   const { id } = router.query;
   const [loadDetail, setLoadDetail] = useState(null);
+
 
   const { data: session } = useSession();
 
@@ -30,34 +42,71 @@ const ProductDetail = () => {
     }
   }, [id]);
 
-  console.log(loadDetail);
-
   if (!loadDetail) {
     return <Loader />
   }
 
+  // var city = loadDetail.PcityName;
+  // var city2 = loadDetail.DcityName;
+
+  // console.log(city);
+  // console.log(city2);
+
+  async function calculateRoute() {
+    if (loadDetail.PcityName === "" || loadDetail.DcityName === "") {
+      return;
+    }
+
+    // eslint-disable-next-line no-undef
+    const directionService = new google.maps.DirectionsService();
+    const result = await directionService.route({
+      origin: loadDetail.PcityName,
+      destination: loadDetail.DcityName,
+      // eslint-disable-next-line no-undef
+      travelMode: google.maps.TravelMode.DRIVING,
+    });
+
+    setDirection(result);
+    setDistanceReff(result.routes[0].legs[0].distance.text);
+    // setDuration(result.routes[0].legs[0].duration.text);
+
+    // setPCityName(originRef.current.value);
+    // setDCityName(destinationRef.current.value);
+  }
+
   return (
     <>
-      <div >
+      <LoadScript
+        googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
+        libraries={["places"]}
+      >
+
         <div className='px-3 py-3'>
           {
-            (session?.user.role === 'admin')? <Link href= {'/loads/allloads'} className='text-xl hover:underline hover:text-slate-500'>GET BACK LOADS</Link>: <Link href= {'/user'} className='text-xl hover:underline hover:text-slate-500'>GET BACK TO LOADS</Link>
+            (session?.user.role === 'admin') ? <Link href={'/loads/allloads'} className='text-xl hover:underline hover:text-slate-500'>GET BACK LOADS</Link> : <Link href={'/user'} className='text-xl hover:underline hover:text-slate-500'>GET BACK TO LOADS</Link>
           }
           {/* <Link href= {''} className='text-xl hover:underline hover:text-slate-500'>GET BACK TO LOADS</Link> */}
         </div>
+
         <div className='min-h-screen flex justify-center items-center '>
           <div className={style.load_info_outer_div} >
-
-            {/* ---------------Google Map Start--------------- */}
-
             <div className={style.map_div}>
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13026993.027933573!2d-106.2559713014177!3d37.14275395502446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited%20States!5e0!3m2!1sen!2sin!4v1695936019318!5m2!1sen!2sin" style={{ width: "100%", height: "100%", border: "0" }} loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+              <GoogleMap
+                center={{ lat: 0, lng: 0 }}
+                zoom={5}
+                mapContainerStyle={{ width: "100%", height: "100%" }}
+                options={{
+                  zoomControl: false,
+                  streetViewControl: false,
+                  mapTypeControl: false,
+                  fullscreenControl: false,
+                }}
+              onLoad={calculateRoute}
+              >
+                <Marker position={center} />
+                {direction && <DirectionsRenderer directions={direction} />}
+              </GoogleMap>
             </div>
-
-            {/* ---------------Google Map End--------------- */}
-
-            {/* ---------------Details Area Start--------------- */}
-
             <div className={style.load_info_div}>
               <div>
                 {/* ---------------Reff No--------------- */}
@@ -66,14 +115,14 @@ const ProductDetail = () => {
 
               <div className='flex justify-between px-3 items-center my-12'>
                 <div className='flex flex-col'>
-                  <b className='flex font-normal justify-end text-2xl'>{loadDetail?.PcityName},{loadDetail?.PState}</b>
+                  <b className='flex font-normal justify-end' style={{fontSize:"20px"}}>{loadDetail?.PcityName}</b>
                   <span className='text-sm font-medium flex justify-end gap-1'><b>Date: </b> {loadDetail?.Pdate}</span>
                   <span className='flex text-sm justify-end gap-1'><b>Time:</b>{loadDetail?.PTimeOne}-{loadDetail?.PTimeTwo}</span>
                 </div>
                 {/* <span className='text-5xl w-full bg-slate-400'><TbTruckDelivery /></span> */}
                 <span className={style.truck_div}><TbTruckDelivery className={style.truck} /></span>
-                <div className='flex flex-col w-52'>
-                  <b className='flex justify-end font-normal text-2xl'>{loadDetail?.DcityName},{loadDetail?.DState}</b>
+                <div className='flex flex-col w-52' style={{width:"200px"}}>
+                  <b className='flex justify-end font-normal' style={{fontSize:"20px"}}>{loadDetail?.DcityName}</b>
                   <span className='text-sm font-medium flex justify-end gap-1'><b>Date:</b>{loadDetail?.Ddate}</span>
                   <span className='flex text-sm justify-end gap-1'> <b>Time:</b>{loadDetail?.DTimeOne}-{loadDetail?.DTimeTwo} </span>
                 </div>
@@ -95,7 +144,7 @@ const ProductDetail = () => {
                       </Tr>
                       <Tr>
                         <Td>Miles</Td>
-                        <Td><span>{loadDetail?.distance}</span></Td>
+                        <Td><span>{distanceReff}</span></Td>
                       </Tr>
                       <Tr>
                         <Td>Equipment</Td>
@@ -114,12 +163,9 @@ const ProductDetail = () => {
                 </div>
               </div>
             </div>
-
-            {/* ---------------Details Area End--------------- */}
-
           </div>
         </div>
-      </div>
+      </LoadScript>
     </>
   );
 };

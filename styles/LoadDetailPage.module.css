@@ -15,7 +15,7 @@
 }
 
 .truck_div{
-    width: 90%;
+    width: 43%;
     color: red;
     font-size: 45px;
     overflow: hidden;
@@ -39,7 +39,7 @@
 
 @media (max-width: 1440px) {
     .truck_div{
-        width: 80%;
+        width: 37%;
     }
     .load_info_outer_div{
         width: 100%;
