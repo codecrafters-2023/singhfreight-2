@@ -31,7 +31,7 @@ const Alldata = ({ loads }) => {
 
         // <------------------ User Part Start -------------------->
 
-    }else if(session?.user?.role === ""){
+    } else if (session?.user?.role === "") {
         router.push('/signin');
     } else if (session?.user?.role === "user") {
 
@@ -72,28 +72,28 @@ const Alldata = ({ loads }) => {
         return (
             <div style={{ display: "grid", gridTemplateColumns: "25% 1fr", padding: "10px 30px", height: "100vh" }} >
 
-                    {/* <----------------Filter Area start----------------> */}
+                {/* <----------------Filter Area start----------------> */}
 
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", flexDirection:"column" }} >
-                        <div style={{ display: "flex", gap: "20px", marginTop:"50px" }}>
-                            <div style={{display:"flex"}}>
+                    <div style={{ display: "flex", justifyContent: "space-between", flexDirection: "column" }} >
+                        <div style={{ display: "flex", gap: "20px", marginTop: "50px" }}>
+                            <div style={{ display: "flex" }}>
                                 <label className='text-lg text-slate-600 mb-2'>From </label>
                                 <input
                                     value={firstDate}
                                     onChange={() => { setFirstDate(firstDatevalue) }}
                                     onClick={() => setShow(!show)}
-                                    style={{ width: "150px",border:"1px solid #000", marginLeft: "5px", outline:"none", height:"30px" }}
+                                    style={{ width: "150px", border: "1px solid #000", marginLeft: "5px", outline: "none", height: "30px" }}
 
                                 />
                             </div>
-                            <div style={{display:"flex"}}>
+                            <div style={{ display: "flex" }}>
                                 <label className='text-lg text-slate-600 mb-2'>To</label>
                                 <input
                                     value={secondDate}
                                     onChange={() => { setSecondDate(secondDatevalue) }}
                                     onClick={() => setShow(!show)}
-                                    style={{ width: "150px",border:"1px solid #000", marginLeft: "5px", outline:"none" , height:"30px"}}
+                                    style={{ width: "150px", border: "1px solid #000", marginLeft: "5px", outline: "none", height: "30px" }}
 
                                 />
                             </div>
@@ -104,51 +104,51 @@ const Alldata = ({ loads }) => {
                                 onChange={handleSelect}
                             /> : ""
                         }
-                        <button className="btn btn-warning" style={{ height: "40px", marginTop:"20px" }} onClick={clearFilter}>Clear filter</button>
+                        <button className="btn btn-warning" style={{ height: "40px", marginTop: "20px" }} onClick={clearFilter}>Clear filter</button>
                     </div>
                 </div>
 
                 {/* <----------------Filter Area End----------------> */}
 
-                <div className="w-full" style={{padding:"0 100px"}} >
+                <div className="w-full" style={{ padding: "0 100px" }} >
                     {loadData.map((note) => (
                         <>
-                         <div className={style.main_div}>
-                                                <div className={style.price_div}>
-                                                    <div className={style.price_inner_div}>
-                                                        <span className='text-5xl font-bold text-cyan-600'>${note.price}</span>
-                                                        <span className=' text-sm text-slate-500'>FTL- {note.equipment} </span>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div className={style.Pickup_load_div}>
-                                                        <b className='flex font-normal justify-end'>{note.PcityName}, {note.PState}</b>
-                                                        <span className='text-sm font-light flex justify-end'> {note.Pdate}, {note.PTimeOne}-{note.PTimeTwo} </span>
-                                                    </div>
-                                                    <br />
-                                                    <div className={style.dilivery_load_div}>
-                                                        <b className='flex font-normal justify-end'>{note.DcityName}, {note.DState}</b>
-                                                        <span className='text-sm font-light flex justify-end'> {note.Ddate}, {note.DTimeOne}-{note.DTimeTwo} </span>
-                                                    </div>
-                                                </div>
-                                                <div className={style.button_div}>
-                                                    <Tooltip hasArrow label='View Details' bg='gray.300' color='black'>
-                                                        <Link href={`/loads/${note._id}`} className="bg-cyan-600 px-3 py-1 text-white text-lg" >View Detail</Link>
-                                                    </Tooltip>
+                            <div className={style.main_div}>
+                                <div className={style.price_div}>
+                                    <div className={style.price_inner_div}>
+                                        <span className='text-5xl font-bold text-cyan-600'>${note.price}</span>
+                                        <span className=' text-sm text-slate-500'>FTL- {note.equipment} </span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className={style.Pickup_load_div}>
+                                        <b className='flex font-normal justify-end'>{note.PcityName}</b>
+                                        <span className='text-sm font-light flex justify-end'> {note.Pdate}, {note.PTimeOne}-{note.PTimeTwo} </span>
+                                    </div>
+                                    <br />
+                                    <div className={style.dilivery_load_div}>
+                                        <b className='flex font-normal justify-end'>{note.DcityName}</b>
+                                        <span className='text-sm font-light flex justify-end'> {note.Ddate}, {note.DTimeOne}-{note.DTimeTwo} </span>
+                                    </div>
+                                </div>
+                                <div className={style.button_div}>
+                                    <Tooltip hasArrow label='View Details' bg='gray.300' color='black'>
+                                        <Link href={`/loads/${note._id}`} className="bg-cyan-600 px-3 py-1 text-white text-lg" >View Detail</Link>
+                                    </Tooltip>
 
-                                                    {
-                                                        note.show?
-                                                        <Tooltip hasArrow label='Booked' bg='gray.300' color='black'>
-                                                        <div className="bg-cyan-600 px-3 py-1 text-white text-lg" >Booked</div>
-                                                    </Tooltip>:
-                                                    
-                                                    <Tooltip hasArrow label='Book load' bg='gray.300' color='black'>
-                                                        <button onClick={() => handleBookLoad(noteId)} className="bg-cyan-600 px-3 py-1 text-white text-lg" >Book load</button>
-                                                    </Tooltip>
-                                                    }
-                                                </div>
-                                            </div>
-                    </>
+                                    {
+                                        note.show ?
+                                            <Tooltip hasArrow label='Booked' bg='gray.300' color='black'>
+                                                <div className="bg-cyan-600 px-3 py-1 text-white text-lg" >Booked</div>
+                                            </Tooltip> :
+
+                                            <Tooltip hasArrow label='Book load' bg='gray.300' color='black'>
+                                                <button onClick={() => handleBookLoad(noteId)} className="bg-cyan-600 px-3 py-1 text-white text-lg" >Book load</button>
+                                            </Tooltip>
+                                    }
+                                </div>
+                            </div>
+                        </>
                     ))}
                 </div>
             </div>
@@ -173,7 +173,7 @@ export async function getServerSideProps() {
             .toArray();
 
         return {
-            props: { loads: JSON.parse(JSON.stringify(loads))},
+            props: { loads: JSON.parse(JSON.stringify(loads)) },
         };
     } catch (e) {
         console.error(e);

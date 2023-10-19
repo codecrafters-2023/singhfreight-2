@@ -52,7 +52,7 @@
 //         e.preventDefault()
 
 //         // -----------validation start-------------
-        
+
 //         if (!PcityName || !PState || !PZipCode || !Pdate || !PTimeOne || !DcityName || !DState || !DZipCode || !Ddate || !DTimeOne || !price || !equipment || !weight || !distance || !commodity) {
 //             { `${setError(<div style={{ color: "red" }}>All Fields are required</div>)}` }
 //             return;
@@ -110,7 +110,7 @@
 //                                 </div>
 
 //                                 <h4 className='mt-3'>Pick Up Address</h4>
-                                
+
 //                                 <div>
 //                                     <div className='flex gap-3'>
 //                                         <div className="mb-2 w-1/2">
@@ -202,7 +202,7 @@
 //                             <div className='w-full '>
 
 //                                 <h4>Delivery Address</h4>
-                                
+
 //                                 <div className='flex gap-3'>
 //                                     <div className="mb-2 w-1/2">
 //                                         <label className='text-lg text-slate-600 mb-2'>City</label>
@@ -439,14 +439,11 @@
 
 import React, { useRef, useState } from "react";
 import {
-    GoogleMap,
     LoadScript,
-    Marker,
-    DirectionsRenderer,
     Autocomplete,
 } from "@react-google-maps/api";
 import DashboardLayout from "./loads/layout";
-import { Input, Select, useToast } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 import style from "../styles/AddLoad.module.css";
 
@@ -463,11 +460,6 @@ function Postload() {
 
     const [map, setMap] = useState(null);
     const [direction, setDirection] = useState(null);
-    const [distanceReff, setDistanceReff] = useState("");
-    const [duration, setDuration] = useState("");
-
-    // const [PcityName, setPCityName] = useState('')
-    // const [DcityName, setDCityName] = useState('')
 
     const [reffNo, setReffNo] = useState("");
     const [PcityName, setPCityName] = useState("");
@@ -492,9 +484,6 @@ function Postload() {
 
     const [checkedvalues, setValue] = useState([]);
 
-
-
-
     console.log(originRef);
     console.log(destinationRef);
 
@@ -503,24 +492,22 @@ function Postload() {
 
 
 
-    async function calculateRoute() {
-        if (originRef.current.value === "" || destinationRef.current.value === "") {
-            return;
-        }
+    // async function calculateRoute() {
+    //     if (originRef.current.value === "" || destinationRef.current.value === "") {
+    //         return;
+    //     }
 
-        // eslint-disable-next-line no-undef
-        const directionService = new google.maps.DirectionsService();
-        const result = await directionService.route({
-            origin: originRef.current.value,
-            destination: destinationRef.current.value,
-            // eslint-disable-next-line no-undef
-            travelMode: google.maps.TravelMode.DRIVING,
-        });
+    //     // eslint-disable-next-line no-undef
+    //     const directionService = new google.maps.DirectionsService();
+    //     const result = await directionService.route({
+    //         origin: originRef.current.value,
+    //         destination: destinationRef.current.value,
+    //         // eslint-disable-next-line no-undef
+    //         travelMode: google.maps.TravelMode.DRIVING,
+    //     });
 
-        setDirection(result);
-        setDistanceReff(result.routes[0].legs[0].distance.text);
-        setDuration(result.routes[0].legs[0].duration.text);
-    }
+    //     setDirection(result);
+    // }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -634,7 +621,7 @@ function Postload() {
                     libraries={["places"]}
                 >
                     <h1>ADD LOAD</h1>
-                    <div className="min-h-screen mt-6 border border-slate-900 p-6 shadow-lg w-3/5">
+                    <div className="min-h-screen mt-6 mb-5 border border-slate-900 p-6 shadow-lg w-3/5">
                         <div className="w-full">
                             <form onSubmit={handleSubmit}>
                                 {/* --------------Pickup Area Start--------------- */}
@@ -1073,12 +1060,6 @@ function Postload() {
                         </div>
                     </div>
                     {/* --------------Form End--------------- */}
-
-                    <div>{distanceReff}</div>
-                    <div>{duration}</div>
-
-                    <button onClick={calculateRoute}>Search</button>
-                    <button onClick={() => map.panTo(center)}>Center</button>
                 </LoadScript>
             </DashboardLayout>
         </>

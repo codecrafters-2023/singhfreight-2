@@ -69,22 +69,6 @@ export default function Home({ notes }) {
         setNoteId(noteId)
     }
 
-    const editValue = (show, noteId) => {
-        setShow(show)
-        setNoteId(noteId)
-    }
-    const handleBookLoad = async (noteId) => {
-        const update = {
-            show,
-            noteId
-        }
-
-        const res = await axios.put(`/api/bookload?id=${noteId}`, { update })
-            .then(() => {
-                window.location.reload(false);
-            })
-    }
-
     const updateNote = async (noteId) => {
         const noteObj = {
             reffNo,
@@ -128,7 +112,6 @@ export default function Home({ notes }) {
         <>
             <DashboardLayout >
                 <div style={{ height: "100vh" }}>
-                    {/* <Link href={'/loadPost'} className="bg-cyan-400 px-3 py-2 m-5">Add Load</Link> */}
                     <div className='mt-5' >
                         <div >
                             {
@@ -145,12 +128,12 @@ export default function Home({ notes }) {
                                                 </div>
                                                 <div>
                                                     <div className={style.Pickup_load_div}>
-                                                        <b className='flex font-normal justify-end'>{note.PcityName}, {note.PState}</b>
+                                                        <b className='flex font-normal justify-end'>{note.PcityName}</b>
                                                         <span className='text-sm font-light flex justify-end'> {note.Pdate}, {note.PTimeOne}-{note.PTimeTwo} </span>
                                                     </div>
                                                     <br />
                                                     <div className={style.dilivery_load_div}>
-                                                        <b className='flex font-normal justify-end'>{note.DcityName}, {note.DState}</b>
+                                                        <b className='flex font-normal justify-end'>{note.DcityName}</b>
                                                         <span className='text-sm font-light flex justify-end'> {note.Ddate}, {note.DTimeOne}-{note.DTimeTwo} </span>
                                                     </div>
                                                 </div>
@@ -200,12 +183,6 @@ export default function Home({ notes }) {
                                                         </Tooltip>
                                                     </div>
 
-                                                    <button onClick={() =>
-                                                        editValue(
-                                                            note.show,
-                                                            note._id
-                                                        )}>book</button>
-
                                                     <Tooltip hasArrow label='Delete' bg='gray.300' color='black'>
                                                         <button onClick={() => deleteNote(note._id)} className='hover:text-rose-600 text-2xl' ><MdDelete /></button>
                                                     </Tooltip>
@@ -215,7 +192,6 @@ export default function Home({ notes }) {
                                     )
                                 })
                             }
-                            <input type="text" value={show} onChange={(e) => setShow(e.target.value)} />
 
                             {/* -------------Update Form Start----------------- */}
 

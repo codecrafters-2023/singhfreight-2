@@ -14,7 +14,7 @@ export default function DashboardLayout({
                             </div>
                         </div>
                             <div style={{marginTop:"80px",display:"flex",flexDirection:"column",justifyContent:"center"}}>
-                                <ul style={{display:"flex",flexDirection:"column",gap:"20px",justifyContent:"center",textTransform:"uppercase",fontSize:"18px"}}>
+                                <ul style={{display:"flex",flexDirection:"column",gap:"20px",justifyContent:"center",textTransform:"capitalize",fontSize:"18px"}}>
                                     <li>
                                         <Link href={"/admin"}>dashboard</Link>
                                     </li>
@@ -25,7 +25,7 @@ export default function DashboardLayout({
                                         <Link href={"/addLoad"}>add loads</Link>
                                     </li>
                                     <li>
-                                        <Link href={"/userActiveForm"}>activate mcnumber</Link>
+                                        <Link href={"/userActiveForm"}>activate carrier</Link>
                                     </li>
                                     <li>
                                         <Link href={"/activeUsers"}>Active User</Link>

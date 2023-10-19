@@ -37,12 +37,12 @@ const Admin = ({ users, loads }) => {
                                                 </div>
                                                 <div>
                                                     <div className={style.Pickup_load_div}>
-                                                        <b className='flex font-normal justify-end'>{load.PcityName}, {load.PState}</b>
+                                                        <b className='flex font-normal justify-end'>{load.PcityName}</b>
                                                         <span className='text-sm font-light flex justify-end'> {load.Pdate}, {load.PTimeOne}-{load.PTimeTwo} </span>
                                                     </div>
                                                     <br />
                                                     <div className={style.dilivery_load_div}>
-                                                        <b className='flex font-normal justify-end'>{load.DcityName}, {load.DState}</b>
+                                                        <b className='flex font-normal justify-end'>{load.DcityName}</b>
                                                         <span className='text-sm font-light flex justify-end'> {load.Ddate}, {load.DTimeOne}-{load.DTimeTwo} </span>
                                                     </div>
                                                 </div>

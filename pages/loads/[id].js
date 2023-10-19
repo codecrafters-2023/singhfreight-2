@@ -29,6 +29,10 @@ const ProductDetail = () => {
   const { id } = router.query;
   const [loadDetail, setLoadDetail] = useState(null);
 
+  useEffect(() => {
+    const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KE
+  })
+
 
   const { data: session } = useSession();
 
@@ -45,12 +49,6 @@ const ProductDetail = () => {
   if (!loadDetail) {
     return <Loader />
   }
-
-  // var city = loadDetail.PcityName;
-  // var city2 = loadDetail.DcityName;
-
-  // console.log(city);
-  // console.log(city2);
 
   async function calculateRoute() {
     if (loadDetail.PcityName === "" || loadDetail.DcityName === "") {
@@ -110,7 +108,7 @@ const ProductDetail = () => {
             <div className={style.load_info_div}>
               <div>
                 {/* ---------------Reff No--------------- */}
-                <h1 className='text-xl font-light m-3 underline'>Reff.No: {loadDetail?.reffNo}</h1>
+                <h1 className='text-xl font-light m-3 underline'>Ref: {loadDetail?.reffNo}</h1>
               </div>
 
               <div className='flex justify-between px-3 items-center my-12'>
