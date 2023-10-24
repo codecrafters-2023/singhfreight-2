@@ -9,6 +9,9 @@ const careerSchema = new Schema({
         type: String,
         required: true,
     },
+    companyName: {
+        type: String,
+    }
 },
 {
     timestamps : true  // to add createdAt and updatedAt fields in the schema.

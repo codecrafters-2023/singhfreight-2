@@ -67,13 +67,12 @@ const ActiveUsers = ({ users }) => {
             <DashboardLayout>
                 <div style={{ height: "100vh", }} className="w-full">
                     <h1 style={{ margin: "20px 0 100px 0" }}>Active Users</h1>
-                    <TableContainer >
-                        <Table variant='simple'>
+                        <Table>
                             <Thead>
                                 <Tr>
-                                    <Th style={{fontSize:"18px"}}>Name</Th>
+                                    <Th style={{fontSize:"18px",padding:"5px"}}>Name</Th>
                                     <Th style={{fontSize:"18px"}}>Email</Th>
-                                    <Th style={{fontSize:"18px"}}>Role</Th>
+                                    {/* <Th style={{fontSize:"18px"}}>Role</Th> */}
                                     <Th style={{fontSize:"18px"}}>Edit/Del.</Th>
                                 </Tr>
                             </Thead>
@@ -81,9 +80,9 @@ const ActiveUsers = ({ users }) => {
                                 <>
                                     <Tbody key={user._id}>
                                         <Tr className={style.tr_div}>
-                                            <Td >{user.firstName}</Td>
-                                            <Td>{user.email}</Td>
-                                            <Td>{user.role}</Td>
+                                            <Td style={{padding:"5px"}}>{user.firstName}</Td>
+                                            <Td style={{padding:"5px"}}>{user.email}</Td>
+                                            {/* <Td>{user.role}</Td> */}
                                             <Td>
                                                 <div className='flex gap-4 items-start'>
                                                     <Tooltip hasArrow label='Edit' bg='gray.300' color='black'>
@@ -101,7 +100,6 @@ const ActiveUsers = ({ users }) => {
                                 </>
                             ))}
                         </Table>
-                    </TableContainer>
 
                     {/* ----------------update form start---------------- */}
 

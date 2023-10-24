@@ -63,7 +63,7 @@ const UserActiveForm = () => {
     return (
         <>
             <DashboardLayout>
-                <div className='w-1/2 mt-10 border border-slate-600 p-3'>
+                <div className='lg:w-1/2 mt-10 border border-slate-600 p-3 md:w-full sm:w-full'>
                     <div className="mb-3">
                         <label htmlFor="companyName" className="form-label text-lg">Company Name</label>
                         <input type="text" className="form-control mb-3" id="companyName" placeholder="Please enter your Company Name..." value={companyName} onChange={(e) => setCompantName(e.target.value)} />

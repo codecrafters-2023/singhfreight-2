@@ -78,6 +78,10 @@
     font-weight: 400;
 }
 
+.Pdate_Ptime{
+    font-size: 14px;
+}
+
 
 @media (max-width: 992px) {
     .price_inner_div .price {
