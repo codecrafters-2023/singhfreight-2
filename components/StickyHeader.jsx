@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import style from '../styles/StickyHeader.module.css'
 import Link from 'next/link';
 import { signIn, signOut, useSession } from "next-auth/react";
+import { FaBars } from 'react-icons/fa'
+import { RxCross2 } from 'react-icons/rx'
+import SidebarDiv from './sidebarDiv';
 
 const StickyHeader = () => {
 
-    const { data: session } = useSession();
+    const [show, setShow] = useState();
+
+    const { data: session } = useSession(false);
 
     if (session?.user?.role === 'admin' || session?.user?.role === 'user') {
         return (
@@ -13,6 +18,10 @@ const StickyHeader = () => {
                 <header className={style.sticky_top}>
                     <nav className="navbar-expand-lg py-3">
                         <div className={style.ul_link_div}>
+                            {
+                                show ? <span className={style.faBars} style={{ fontSize: "30px" }}><RxCross2 onClick={() => setShow(!show)} /></span> : <span className={style.faBars} ><FaBars onClick={() => setShow(!show)} /></span>
+                            }
+
                             <ul className={style.ul}>
                                 <li >
                                     <Link href={'/about'} className={style.link} >ABOUT</Link >
@@ -43,7 +52,13 @@ const StickyHeader = () => {
                         </div>
                     </nav>
                 </header>
-
+                {
+                    show ? <div>
+                        <div className={style.sidebarDiv}>
+                            <SidebarDiv />
+                        </div>
+                    </div> : ""
+                }
             </>
         )
     } else {

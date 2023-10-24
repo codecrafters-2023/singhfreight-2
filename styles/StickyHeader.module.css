@@ -8,6 +8,14 @@
     align-items: center;
     padding: 5px 100px;
 }
+.faBars{
+    font-size: 25px;
+    display: none;
+}
+
+.sidebarDiv{
+    display: none;
+}
 
 .ul {
     display: flex;
@@ -46,4 +54,22 @@
     min-width: 100%;
     min-height: 100%;
     z-index: -1;
+}
+
+
+@media (max-width: 992px) {
+    .ul_link_div{
+        padding: 5px 20px;
+    }
+}
+@media (max-width: 768px) {
+    .faBars{
+        display: block;
+    }
+    .sidebarDiv{
+        display: block;
+    }
+    .ul li {
+        display: none;
+    }
 }

@@ -484,8 +484,11 @@ function Postload() {
 
     const [checkedvalues, setValue] = useState([]);
 
-    console.log(originRef);
-    console.log(destinationRef);
+    // console.log(setPCityName(originRef));
+    // console.log(setDCityName(destinationRef));
+
+console.log(PcityName);
+console.log(DcityName);
 
     // var city = originRef.current.value
     // var city2 = destinationRef.current.value
@@ -580,7 +583,7 @@ function Postload() {
             position: "top",
         });
 
-        setReffNo(""),
+            setReffNo(""),
             setPCityName(""),
             setPState(""),
             setPZipCode(""),
@@ -660,7 +663,7 @@ function Postload() {
                                                         placeholder="Search for a place"
                                                         ref={originRef}
                                                         // value={PcityName}
-                                                        onChange={(e) => setPCityName(originRef.current.value)}
+                                                        // onChange={(e) => setPCityName(originRef.current.value)}
                                                         style={{
                                                             boxSizing: "border-box",
                                                             border: "1px solid transparent",
@@ -719,7 +722,7 @@ function Postload() {
                                             <div className="flex flex-col">
                                                 <label
                                                     className="text-lg text-slate-600 mb-2"
-                                                    htmlFor="time"
+                                                    htmlFor="timeOne"
                                                 >
                                                     Time Range
                                                 </label>
@@ -727,8 +730,8 @@ function Postload() {
                                                     size="md"
                                                     type="time"
                                                     className={style.form_input}
-                                                    id="time"
-                                                    name="time"
+                                                    id="timeOne"
+                                                    name="timeOne"
                                                     value={PTimeOne}
                                                     onChange={(e) => setPTimeOne(e.target.value)}
                                                 />
@@ -736,7 +739,7 @@ function Postload() {
                                             <div className="flex flex-col">
                                                 <label
                                                     className="text-lg text-slate-600 mb-2"
-                                                    htmlFor="time"
+                                                    htmlFor="timeTwo"
                                                 >
                                                     Time Range
                                                 </label>
@@ -744,8 +747,8 @@ function Postload() {
                                                     size="md"
                                                     type="time"
                                                     className={style.form_input}
-                                                    id="time"
-                                                    name="time"
+                                                    id="timeTwo"
+                                                    name="timeTwo"
                                                     value={PTimeTwo}
                                                     onChange={(e) => setPTimeTwo(e.target.value)}
                                                 />
@@ -765,7 +768,7 @@ function Postload() {
                                         <div className="flex flex-col">
                                             <label
                                                 className="text-lg text-slate-600 mb-2"
-                                                htmlFor="time"
+                                                htmlFor="DcityName"
                                             >
                                                 City
                                             </label>
@@ -796,7 +799,7 @@ function Postload() {
                                         <div className="flex flex-col">
                                             <label
                                                 className="text-lg text-slate-600 mb-2"
-                                                htmlFor="zip_code"
+                                                htmlFor="zip_codeTwo"
                                             >
                                                 Zip Code
                                             </label>
@@ -804,8 +807,8 @@ function Postload() {
                                                 autoComplete="off"
                                                 type="text"
                                                 className={style.form_input}
-                                                id="zip_code"
-                                                name="zip_code"
+                                                id="zip_codeTwo"
+                                                name="zip_codeTwo"
                                                 placeholder="Zip Code"
                                                 value={DZipCode}
                                                 onChange={(e) => setDZipCode(e.target.value)}
@@ -852,7 +855,7 @@ function Postload() {
                                             <div className="flex flex-col">
                                                 <label
                                                     className="text-lg text-slate-600 mb-2"
-                                                    htmlFor="time"
+                                                    htmlFor="DtimeTwo"
                                                 >
                                                     Time Range
                                                 </label>
@@ -860,8 +863,8 @@ function Postload() {
                                                     size="md"
                                                     type="time"
                                                     className={style.form_input}
-                                                    id="time"
-                                                    name="time"
+                                                    id="DtimeTwo"
+                                                    name="DtimeTwo"
                                                     value={DTimeTwo}
                                                     onChange={(e) => setDTimeTwo(e.target.value)}
                                                 />

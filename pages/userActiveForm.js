@@ -82,7 +82,7 @@ const UserActiveForm = () => {
                         </div>
                     }
                     <div className="d-grid gap-2">
-                        <button className="btn btn-success" type="submit" onClick={handleSubmit}>Submit</button>
+                    <button type="submit" onClick={handleSubmit} className="px-5 py-2.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
                     </div>
                 </div>
             </DashboardLayout>

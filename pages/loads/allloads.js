@@ -122,13 +122,13 @@ export default function Home({ notes }) {
                                             <div className={style.main_div}>
                                                 <div className={style.price_div}>
                                                     <div className={style.price_inner_div}>
-                                                        <span className='text-5xl font-bold text-cyan-600'>${note.price}</span>
+                                                        <span className={style.price}>${note.price}</span>
                                                         <span className=' text-sm text-slate-500'>FTL- {note.equipment} </span>
                                                     </div>
                                                 </div>
-                                                <div>
+                                                <div className={style.city_info_div}>
                                                     <div className={style.Pickup_load_div}>
-                                                        <b className='flex font-normal justify-end'>{note.PcityName}</b>
+                                                        <b className={style.PcityName}>{note.PcityName}</b>
                                                         <span className='text-sm font-light flex justify-end'> {note.Pdate}, {note.PTimeOne}-{note.PTimeTwo} </span>
                                                     </div>
                                                     <br />
@@ -138,22 +138,24 @@ export default function Home({ notes }) {
                                                     </div>
                                                 </div>
                                                 <div className={style.button_div}>
+                                                    <div className={style.view_book_load_div}>
                                                     <Tooltip hasArrow label='View Details' bg='gray.300' color='black'>
-                                                        <Link href={`${note._id}`} className="bg-cyan-600 px-3 py-1 text-white text-lg" >View Detail</Link>
+                                                        <Link href={`${note._id}`} className={style.btn} >View Detail</Link>
                                                     </Tooltip>
 
                                                     {
                                                         note.show ?
                                                             <Tooltip hasArrow label='Booked' bg='gray.300' color='black'>
-                                                                <div className="bg-cyan-600 px-3 py-1 text-white text-lg" >Booked</div>
+                                                                <div className={style.btn} >Booked</div>
                                                             </Tooltip> :
 
                                                             <Tooltip hasArrow label='Book load' bg='gray.300' color='black'>
-                                                                <button  className="bg-cyan-600 px-3 py-1 text-white text-lg" >Book load</button>
+                                                                <button className={style.btn} >Book load</button>
                                                             </Tooltip>
                                                     }
+                                                    </div>
 
-                                                    <div >
+                                                    <div className={style.edit_delete_div}>
                                                         <Tooltip hasArrow label='Edit' bg='gray.300' color='black'>
                                                             <button onClick={(
                                                             ) => editForm(
@@ -181,11 +183,11 @@ export default function Home({ notes }) {
                                                                 note.show,
                                                                 note._id)} className='hover:text-green-600 text-2xl' ><FiEdit data-bs-toggle="modal" data-bs-target="#exampleModal" /></   button>
                                                         </Tooltip>
-                                                    </div>
 
-                                                    <Tooltip hasArrow label='Delete' bg='gray.300' color='black'>
-                                                        <button onClick={() => deleteNote(note._id)} className='hover:text-rose-600 text-2xl' ><MdDelete /></button>
-                                                    </Tooltip>
+                                                        <Tooltip hasArrow label='Delete' bg='gray.300' color='black'>
+                                                            <button onClick={() => deleteNote(note._id)} className='hover:text-rose-600 text-2xl' ><MdDelete /></button>
+                                                        </Tooltip>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </>

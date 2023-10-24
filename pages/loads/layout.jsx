@@ -1,42 +1,59 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import { FaBars } from 'react-icons/fa'
+import { HiOutlineX } from 'react-icons/hi'
+import style from '../../styles/Layout.module.css'
 
 export default function DashboardLayout({
     children,
 }) {
+    const [show, setShow] = useState(true)
     return (
         <section>
-                <div style={{ display: "grid", gridTemplateColumns: "20% 1fr", width: "100%" }}>
-                    <nav style={{ width: "300px", height: "100%", minHeight:"1000px", backgroundColor: "#dddddd"}}>
-                        <div style={{display:"flex",justifyContent:"center" }}>
-                            <div style={{marginTop:"50px"}} >
-                                <Link href={"/admin"}><Image alt="" src={'/headerlogo.png'} height={100} width={100} style={{width:"100%"}} /></Link>
-                            </div>
-                        </div>
-                            <div style={{marginTop:"80px",display:"flex",flexDirection:"column",justifyContent:"center"}}>
-                                <ul style={{display:"flex",flexDirection:"column",gap:"20px",justifyContent:"center",textTransform:"capitalize",fontSize:"18px"}}>
-                                    <li>
-                                        <Link href={"/admin"}>dashboard</Link>
-                                    </li>
-                                    <li>
-                                        <Link href={"/loads/allloads"}>all loads</Link>
-                                    </li>
-                                    <li>
-                                        <Link href={"/addLoad"}>add loads</Link>
-                                    </li>
-                                    <li>
-                                        <Link href={"/userActiveForm"}>activate carrier</Link>
-                                    </li>
-                                    <li>
-                                        <Link href={"/activeUsers"}>Active User</Link>
-                                    </li>
-                                </ul>
-                            </div>
-                    </nav>
-                    <div style={{padding:"0 50px"}}>
-                        {children}
-                    </div>
+            <div className={style.main}>
+
+                {
+                    show ?
+                        <div style={{display:"flex"}}>
+                            <nav className={style.nav}>
+                                <div className={style.image_div}>
+                                        <Link href={"/admin"}><Image alt="" src={'/headerlogo.png'} height={100} width={100} style={{ width: "100%",marginTop:"50px" }} /></Link>
+                                </div>
+                                <div className={style.links_outer_div}>
+                                    <ul>
+                                        <li>
+                                            <Link href={"/admin"}>dashboard</Link>
+                                        </li>
+                                        <li>
+                                            <Link href={"/loads/allloads"}>all loads</Link>
+                                        </li>
+                                        <li>
+                                            <Link href={"/addLoad"}>add loads</Link>
+                                        </li>
+                                        <li>
+                                            <Link href={"/userActiveForm"}>activate carrier</Link>
+                                        </li>
+                                        <li>
+                                            <Link href={"/activeUsers"}>Active User</Link>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                            {/* <span style={{ fontSize: "25px" }}><HiOutlineX onClick={() => setShow(!show)} /></span> */}
+                        </div> :""
+                        // <div>
+                        //     <nav style={{ width: "50px", height: "100%", minHeight: "1000px", backgroundColor: "#dddddd" }}>
+
+                        //         <span style={{ fontSize: "20px" }}><FaBars onClick={() => setShow(!show)} /></span>
+                        //     </nav>
+                        // </div>
+                }
+
+                <div  className={style.children_div}>
+                    {children}
                 </div>
+            </div>
 
         </section>
     )
