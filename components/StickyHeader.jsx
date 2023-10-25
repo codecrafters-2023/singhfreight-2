@@ -73,7 +73,7 @@ const StickyHeader = () => {
 
                             <ul className={style.ul}>
                                 <li >
-                                    <Link href={'/about'} className={style.link} >DASHBOARD</Link >
+                                    <Link href={'/'} className={style.link} >DASHBOARD</Link >
                                 </li>
                                 <li >
                                     <Link href={'/about'} className={style.link} >ABOUT</Link >

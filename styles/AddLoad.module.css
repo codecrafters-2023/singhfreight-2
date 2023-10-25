@@ -1,7 +1,7 @@
 /* min-h-screen mt-6 mb-5 border border-slate-900 p-6 shadow-lg w-3/5 */
 
 .main_div{
-    width: 45%;
+    width: 60%;
     min-height: 100vh;
     margin-top: 20px;
     border: 1px solid rgb(247, 247, 247);
