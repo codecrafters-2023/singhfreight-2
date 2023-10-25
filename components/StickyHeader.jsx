@@ -16,7 +16,7 @@ const StickyHeader = () => {
         return (
             <>
                 <header className={style.sticky_top}>
-                    <nav className="navbar-expand-lg py-3">
+                    <nav className=" py-3">
                         <div className={style.ul_link_div}>
                             {
                                 show ? <span className={style.faBars} style={{ fontSize: "30px" }}><RxCross2 onClick={() => setShow(!show)} /></span> : <span className={style.faBars} ><FaBars onClick={() => setShow(!show)} /></span>
@@ -35,8 +35,8 @@ const StickyHeader = () => {
                                 <li>
                                     <Link href={"/whyUs"} className={style.link}>WHY US</Link >
                                 </li>
-
                             </ul>
+
                             {
                                 session ?
                                     <div className="dropdown">
@@ -65,11 +65,15 @@ const StickyHeader = () => {
         return (
             <>
                 <header className={style.sticky_top}>
-                    <nav className="navbar-expand-lg py-3">
+                    <nav className=" py-3">
                         <div className={style.ul_link_div}>
+                            {
+                                show ? <span className={style.faBars} style={{ fontSize: "30px" }}><RxCross2 onClick={() => setShow(!show)} /></span> : <span className={style.faBars} ><FaBars onClick={() => setShow(!show)} /></span>
+                            }
+
                             <ul className={style.ul}>
                                 <li >
-                                    <Link href={'/'} className={style.link} >dashboard</Link >
+                                    <Link href={'/about'} className={style.link} >DASHBOARD</Link >
                                 </li>
                                 <li >
                                     <Link href={'/about'} className={style.link} >ABOUT</Link >
@@ -83,48 +87,33 @@ const StickyHeader = () => {
                                 <li>
                                     <Link href={"/whyUs"} className={style.link}>WHY US</Link >
                                 </li>
-
                             </ul>
+
+                            {
+                                session ?
+                                    <div className="dropdown">
+                                        <div className="btn dropdown-toggle outline-none border-none hover:text-orange-600" data-bs-toggle="dropdown" aria-expanded="false">
+                                            PROFILE
+                                        </div>
+                                        <ul className="dropdown-menu mt-3">
+                                            <li><button className="dropdown-item" onClick={() => { signOut({ callbackUrl: "/" }) }} >LOGOUT</button></li>
+                                        </ul>
+                                    </div>
+                                    : " "
+                            }
                         </div>
                     </nav>
                 </header>
+                {
+                    show ? <div>
+                        <div className={style.sidebarDiv}>
+                            <SidebarDiv />
+                        </div>
+                    </div> : ""
+                }
             </>
         )
     }
-
-    {/* <header className={style.sticky_top}>
-                <nav className="navbar-expand-lg py-3">
-                    <div className={style.ul_link_div}>
-                        <ul className={style.ul}>
-                            <li >
-                                <Link href={'/about'} className={style.link} >ABOUT</Link >
-                            </li>
-                            <li>
-                                <Link href={"/contact"} className={style.link}>CONTACT</Link >
-                            </li>
-                            <li>
-                                <Link href={"/blogs"} className={style.link}>BLOGS/NEWS</Link >
-                            </li>
-                            <li>
-                                <Link href={"/whyUs"} className={style.link}>WHY US</Link >
-                            </li>
-
-                        </ul>
-                        {
-                            session ?
-                                <div className="dropdown">
-                                    <div className="btn dropdown-toggle outline-none border-none hover:text-orange-600" data-bs-toggle="dropdown" aria-expanded="false">
-                                        PROFILE
-                                    </div>
-                                    <ul className="dropdown-menu mt-3">
-                                        <li><button className="dropdown-item" onClick={() => { signOut({ callbackUrl: "/" }) }} >LOGOUT</button></li>
-                                    </ul>
-                                </div>
-                                : " "
-                        }
-                    </div>
-                </nav>
-            </header> */}
 };
 
 export default StickyHeader;

@@ -1,36 +1,126 @@
-.map_div{
-    height: 70%;
-}
-.load_info_outer_div{
-    display: grid;
-    grid-template-columns: 1fr 45%;
-    width: 80%;
-    margin-top: 20px;
+.back_btn {
+    padding: 10px 20px;
 }
 
-.load_info_div{
-    background-color: rgb(241 245 249);
-    height: 70%;
+.map_div {
+    width: 50vw;
+    height: 70vh;
+}
+
+.main_div {
+    display: flex;
+    margin: 30px 0;
+    padding: 0 200px;
+}
+
+.loadsDetail_div {
+    width: 60%;
+    height: 70vh;
+    background-color: rgb(248, 246, 246);
     overflow-y: scroll;
 }
 
-.truck_div{
-    width: 43%;
+.reff_btn_div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.city_info_div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    margin: 20px 0;
+}
+
+.Pcityname_div {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+}
+
+.Dcityname_div {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+}
+
+.Pcityname {
+    display: flex;
+    font-weight: 400;
+    justify-content: flex-end;
+    font-size: 20px;
+}
+
+.Dcityname {
+    display: flex;
+    font-weight: 400;
+    justify-content: flex-end;
+    font-size: 20px;
+}
+
+.truck {
+    position: relative;
+    animation: truck 8s linear infinite;
+}
+
+.truck_div {
+    width: 42%;
     color: red;
     font-size: 45px;
     overflow: hidden;
 }
-.truck{
 
-    position: relative;
-    animation: truck 8s linear infinite ;
+@keyframes truck {
+    0% {
+        left: 12px;
+    }
+
+    50% {
+        left: 90%;
+    }
+
+    100% {
+        left: 110%;
+    }
 }
-.form_input{
+
+.price_table_loadinfo_div {
+    margin: 30px 20px;
+}
+
+.Pdate_Ptime {
+    font-size: 16px;
+    font-weight: 400;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.Ddate_Dtime {
+    font-size: 16px;
+    font-weight: 400;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.table_container {
+    width: 70%;
+}
+
+.loadDetail_div {
+    margin: 16px 25px;
+}
+
+.form_input {
     box-sizing: border-box;
     border: 1px solid transparent;
     width: 240px;
     height: 32px;
-    padding:  0 12px;
+    padding: 0 12px;
     border-radius: 3px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
     font-size: 14px;
@@ -38,24 +128,65 @@
     text-overflow: ellipsis;
     margin-bottom: 10px;
 }
-@keyframes truck {
-    0%{
-        left: 12px;
+
+@media (max-width: 992px) {
+    .main_div {
+        padding: 0;
+        flex-direction: column;
     }
-    50%{
-        left: 90%;
+
+    .map_div {
+        width: 100vw;
+        height: 40vh;
     }
-    100%{
-        left: 110%;
+
+    .loadsDetail_div {
+        width: 100%;
+    }
+
+    .truck_div {
+        width: 56%;
+    }
+
+    .Dcityname_div {
+        width: auto;
     }
 }
 
-@media (max-width: 1440px) {
-    .truck_div{
-        width: 37%;
+
+@media (max-width: 767px) {
+    .reff_btn_div {
+        margin-top: 20px;
     }
-    .load_info_outer_div{
+
+    .truck_div {
+        display: none;
+    }
+
+    .Pcityname {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .Dcityname {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .Pdate_Ptime {
+        font-size: 12px;
+
+    }
+
+    .Ddate_Dtime {
+        font-size: 12px;
+    }
+
+    .table_container {
         width: 100%;
-        padding: 0 20px;
+    }
+
+    .price_table_loadinfo_div {
+        margin: 30px 5px;
     }
 }

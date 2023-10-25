@@ -32,8 +32,7 @@ function ProductDetail() {
 
   const [companyName, setCompanyName] = useState('')
   const [bid, setBid] = useState('')
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-  const [showFailureMessage, setShowFailureMessage] = useState(false);
+
 
   const router = useRouter();
   const { id } = router.query;
@@ -88,17 +87,17 @@ function ProductDetail() {
         method: "POST",
       });
 
-      if(res) {
+      if (res) {
         toast({
           title: "Successfully Sent",
           status: "success",
           duration: 9000,
           isClosable: true,
           position: "top",
-      });
+        });
 
-      setCompanyName('')
-      setBid('')
+        setCompanyName('')
+        setBid('')
       }
       return res.json();
 
@@ -108,30 +107,30 @@ function ProductDetail() {
   };
   return (
     <>
-      <LoadScript
-        googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
-        libraries={["places"]}
-      >
-        <div className="px-3 py-3">
-          {session?.user.role === "admin" ? (
-            <Link
-              href={"/loads/allloads"}
-              className="text-xl hover:underline hover:text-slate-500"
-            >
-              GET BACK LOADS
-            </Link>
-          ) : (
-            <Link
-              href={"/user"}
-              className="text-xl hover:underline hover:text-slate-500"
-            >
-              GET BACK TO LOADS
-            </Link>
-          )}
-        </div>
+      <div>
+        <LoadScript
+          googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
+          libraries={["places"]}
+        >
+          <div className={style.back_btn}>
+            {session?.user.role === "admin" ? (
+              <Link
+                href={"/loads/allloads"}
+                className="text-xl hover:underline hover:text-slate-500"
+              >
+                GET BACK LOADS
+              </Link>
+            ) : (
+              <Link
+                href={"/user"}
+                className="text-xl hover:underline hover:text-slate-500"
+              >
+                GET BACK TO LOADS
+              </Link>
+            )}
+          </div>
 
-        <div className="min-h-screen flex justify-center items-center ">
-          <div className={style.load_info_outer_div}>
+          <div className={style.main_div}>
             <div className={style.map_div}>
               <GoogleMap
                 center={{ lat: 0, lng: 0 }}
@@ -145,21 +144,13 @@ function ProductDetail() {
                 }}
                 onLoad={calculateRoute}
               >
-                <Marker position={center} />
+                {/* <Marker position={center} /> */}
                 {direction && <DirectionsRenderer directions={direction} />}
               </GoogleMap>
             </div>
-            <div className={style.load_info_div}>
-              {/* ---------------Reff No--------------- */}
 
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  margin: "12px",
-                  alignItems: "center",
-                }}
-              >
+            <div className={style.loadsDetail_div}>
+              <div className={style.reff_btn_div}>
                 <div>
                   <h1 className="text-xl font-light  underline">
                     Ref: {loadDetail?.reffNo}
@@ -279,45 +270,46 @@ function ProductDetail() {
                       </div>
                     </div>
                   </div>
-
-                  {/* ----------------model box end----------------- */}
-
                 </div>
+
+                {/* ----------------model box end----------------- */}
               </div>
 
-              <div className="flex justify-between px-3 items-center my-12">
-                <div className="flex flex-col">
+
+              <div className={style.city_info_div} >
+                <div className={style.Pcityname_div}>
                   <b
-                    className="flex font-normal justify-end"
-                    style={{ fontSize: "20px" }}
+                    className={style.Pcityname}
                   >
                     {loadDetail?.PcityName}
                   </b>
-                  <span className="text-sm font-medium flex justify-end gap-1">
+
+                  <span className={style.Pdate_Ptime}>
                     <b>Date: </b> {loadDetail?.Pdate}
                   </span>
-                  <span className="flex text-sm justify-end gap-1">
+                  <span className={style.Pdate_Ptime}>
                     <b>Time:</b>
                     {loadDetail?.PTimeOne}-{loadDetail?.PTimeTwo}
                   </span>
                 </div>
-                {/* <span className='text-5xl w-full bg-slate-400'><TbTruckDelivery /></span> */}
+
                 <span className={style.truck_div}>
                   <TbTruckDelivery className={style.truck} />
                 </span>
-                <div className="flex flex-col w-52" style={{ width: "200px" }}>
+
+                <div className={style.Dcityname_div}>
                   <b
-                    className="flex justify-end font-normal"
-                    style={{ fontSize: "20px" }}
+                    className={style.Dcityname}
                   >
                     {loadDetail?.DcityName}
                   </b>
-                  <span className="text-sm font-medium flex justify-end gap-1">
+
+                  <span className={style.Ddate_Dtime} >
                     <b>Date:</b>
                     {loadDetail?.Ddate}
                   </span>
-                  <span className="flex text-sm justify-end gap-1">
-                    {" "}
+
+                  <span className={style.Ddate_Dtime} >
                     <b>Time:</b>
                     {loadDetail?.DTimeOne}-{loadDetail?.DTimeTwo}{" "}
                   </span>
@@ -326,14 +318,14 @@ function ProductDetail() {
 
               <hr className="w-11/12 m-auto mt-3" />
 
-              <div className="mx-5 my-4">
+              <div className={style.price_table_loadinfo_div}>
                 <div>
                   <span className="text-5xl font-bold text-cyan-600 ">
                     ${loadDetail?.price}
                   </span>
                 </div>
 
-                <TableContainer style={{ width: "70%" }}>
+                <TableContainer className={style.table_container}>
                   <Table>
                     <Tbody>
                       <Tr>
@@ -363,9 +355,10 @@ function ProductDetail() {
                     </Tbody>
                   </Table>
                 </TableContainer>
+
                 <div
                   style={{ display: "grid", gridTemplateColumns: "100px 1fr" }}
-                  className="mx-4 my-4"
+                  className={style.loadDetail_div}
                 >
                   <span>Load Details</span>
                   <span className="text-justify ml-10">
@@ -373,10 +366,11 @@ function ProductDetail() {
                   </span>
                 </div>
               </div>
+
             </div>
           </div>
-        </div>
-      </LoadScript>
+        </LoadScript>
+      </div>
     </>
   );
 }

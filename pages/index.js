@@ -46,8 +46,8 @@ export default function Home() {
                         <h1 className={style.services_heading}>Our Services</h1>
                         <p className={style.services_description}>If you’re looking for a Trustworthy & Fastest Trucking Services Provider all over the 48 State, Then, We are here!!</p>
                     </div>
-                    <div className="row row-cols-1 row-cols-md-3 g-4 mt-12" >
-                        <div className="flex justify-center items-center p-0">
+                    <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-12">
+                        <div className="flex justify-center items-center">
                             <div className="card h-100  text-center  border-orange-500">
                                 <span className={style.services_card_icon}><FaTruckMoving /></span>
                                     <div className="card-body">

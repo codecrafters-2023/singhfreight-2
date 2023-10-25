@@ -21,7 +21,7 @@ const page = () => {
                         <div className={style.contact_info_div}>
                             <h1 className={style.contact_heading}>Contact Us</h1>
                             <nav className={style.navlink}>
-                                <Link  href={'/'} className={style.home_link} >Home</Link>
+                                <Link href={'/'} className={style.home_link} >Home</Link>
                                 <span className={style.arrow_icon}><MdKeyboardDoubleArrowRight /></span>
                                 <span className={style.icon_after_heading}>Contact Us</span>
                             </nav>
@@ -66,7 +66,7 @@ const page = () => {
                         </div>
 
 
-                        <div className={style.map_div}>
+                        <div className={style.map_links_div}>
 
                             {/* --------------links div start----------------- */}
 
@@ -85,7 +85,7 @@ const page = () => {
 
                             {/* --------------map div start----------------- */}
 
-                            <div style={{ height: "70%" }} >
+                            <div className={style.map_div} >
                                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13026993.027933573!2d-106.2559713014177!3d37.14275395502446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited%20States!5e0!3m2!1sen!2sin!4v1696520703364!5m2!1sen!2sin" style={{ width: "100%", height: "100%", border: "0" }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
                             </div>
 
@@ -99,73 +99,77 @@ const page = () => {
             {/* --------------contact info start----------------- */}
 
             <section style={{ margin: "100px 0" }}>
-                <div className='container'>
+                <div className={style.contact_info_div}>
                     <h1 className={style.location_heading}>Locations</h1>
 
-                    <div className={style.location_div}>
+                    <div className={style.location_div} >
 
                         {/* --------------location info----------------- */}
 
-                        <div>
-                            <div className={style.location_icon_div}>
-                                <span className={style.location_icon}><CiLocationOn /></span>
-                            </div>
-                            <b>Address:</b>
-                            <p className={style.address_info}>1231 Hartwell Ave Stockton,<br /> CA 95209</p>
-                            <b>Address:</b>
-                            <p className={style.address_info}>4730 S Fort Apache Rd,<br /> Suite 300 Las Vegas, NV 89147</p>
-                        </div>
-
-                        {/* --------------contact info----------------- */}
-
-                        <div>
-                            <div className={style.location_icon_div}>
-                                <span className={style.location_icon}><BsTelephoneInboundFill /></span>
-                            </div>
+                        <div className={style.address_contact_div}>
                             <div>
-                                <div>
-                                    <b>Operation contact:</b>
-                                    <p className={style.contact_info}>+1 (385) 424-8237<br />
-                                        +1 (725) 239-3080<br />
-                                        +1 (725) 444-1944</p>
+                                <div className={style.location_icon_div}>
+                                    <span className={style.location_icon}><CiLocationOn /></span>
+                                </div>
+                                <b>Address:</b>
+                                <p className={style.address_info}>1231 Hartwell Ave Stockton,<br /> CA 95209</p>
+                                <b>Address:</b>
+                                <p className={style.address_info}>4730 S Fort Apache Rd,<br /> Suite 300 Las Vegas, NV 89147</p>
+                            </div>
+
+                            {/* --------------contact info----------------- */}
+
+                            <div>
+                                <div className={style.location_icon_div}>
+                                    <span className={style.location_icon}><BsTelephoneInboundFill /></span>
                                 </div>
                                 <div>
-                                    <b>Accounting Contact:</b>
-                                    <p className={style.contact_info}>+1 (209) 765-5845</p>
+                                    <div>
+                                        <b>Operation contact:</b>
+                                        <p className={style.contact_info}>+1 (385) 424-8237<br />
+                                            +1 (725) 239-3080<br />
+                                            +1 (725) 444-1944</p>
+                                    </div>
+                                    <div>
+                                        <b>Accounting Contact:</b>
+                                        <p className={style.contact_info}>+1 (209) 765-5845</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         {/* --------------Email info----------------- */}
 
-                        <div>
-                            <div className={style.location_icon_div}>
-                                <span className={style.location_icon}><GrMail /></span>
-                            </div>
+                        <div className={style.email_website_div}>
                             <div>
-                                <div>
-                                    <b>Operation Email:</b>
-                                    <p className={style.email_info}>hapee@singhfreight.com<br /> amrit@singhfreight.com<br /> sales@singhfreight.com</p>
+                                <div className={style.location_icon_div}>
+                                    <span className={style.location_icon}><GrMail /></span>
                                 </div>
                                 <div>
-                                    <b>Accounting Email:</b>
-                                    <p className={style.contact_info}>sukhman@singhfreight.com<br /> amrit@singhfreight.com</p>
+                                    <div>
+                                        <b>Operation Email:</b>
+                                        <p className={style.email_info}>hapee@singhfreight.com<br /> amrit@singhfreight.com<br /> sales@singhfreight.com</p>
+                                    </div>
+                                    <div>
+                                        <b>Accounting Email:</b>
+                                        <p className={style.contact_info}>sukhman@singhfreight.com<br /> amrit@singhfreight.com</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        {/* --------------website info----------------- */}
+                            {/* --------------website info----------------- */}
 
-                        <div>
-                            <div className={style.location_icon_div}>
-                                <span className={style.location_icon}><BsGlobe /></span>
-                            </div>
                             <div>
-                                <b>Website:</b>
-                                <p className={style.email_info}><Link href={'https://singhfreight.com'} className={style.website_link} >singhfreight.com</Link></p>
+                                <div className={style.location_icon_div}>
+                                    <span className={style.location_icon}><BsGlobe /></span>
+                                </div>
+                                <div>
+                                    <b>Website:</b>
+                                    <p className={style.email_info}><Link href={'https://singhfreight.com'} className={style.website_link} >singhfreight.com</Link></p>
+                                </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
             </section>

@@ -99,7 +99,8 @@
 
 @media (max-width: 767px) {
     .loads_main_div{
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 45% 1fr;
+        padding: 5px;
     }
     .price_inner_div .price{
         font-size: 30px;

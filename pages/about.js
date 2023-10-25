@@ -24,7 +24,7 @@ const page = () => {
                 </div>
             </section>
 
-            <section className='container'>
+            <section className={style.image_container}>
                 <div className={style.grid_div}>
                     <div className={style.about_side_img_div}>
                         <Image alt='' src={'/about2.jpg'} width={300} height={400} className={style.about_side_img} />

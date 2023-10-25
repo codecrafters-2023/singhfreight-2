@@ -40,14 +40,7 @@ export default function DashboardLayout({
                                     </ul>
                                 </div>
                             </nav>
-                            {/* <span style={{ fontSize: "25px" }}><HiOutlineX onClick={() => setShow(!show)} /></span> */}
                         </div> :""
-                        // <div>
-                        //     <nav style={{ width: "50px", height: "100%", minHeight: "1000px", backgroundColor: "#dddddd" }}>
-
-                        //         <span style={{ fontSize: "20px" }}><FaBars onClick={() => setShow(!show)} /></span>
-                        //     </nav>
-                        // </div>
                 }
 
                 <div  className={style.children_div}>

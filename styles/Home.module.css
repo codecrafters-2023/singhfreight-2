@@ -199,3 +199,22 @@
     font-weight: bold;
     margin: 0 0 20px 0;
 }
+
+
+@media (max-width: 992px) {
+    .company_name h1 {
+        font-size: 70px;
+    }
+}
+
+@media (max-width: 767px) {
+    .company_name h1 {
+        font-size: 35px;
+    }
+    .button_lg{
+        padding: 5px 10px;
+    }
+    .services_heading{
+        font-size: 40px;
+    }
+}

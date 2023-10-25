@@ -7,7 +7,8 @@ import { DateRange } from 'react-date-range';
 import { Tooltip, } from '@chakra-ui/react'
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import style from '../styles/allloads.module.css'
+import style from '../styles/user.module.css'
+import { RxCross2 } from 'react-icons/rx'
 
 const Alldata = ({ loads }) => {
 
@@ -70,59 +71,61 @@ const Alldata = ({ loads }) => {
         // <------------------ Date Picker Part End -------------------->
 
         return (
-            <div style={{ display: "grid", gridTemplateColumns: "25% 1fr", padding: "10px 30px", height: "100vh" }} >
+            <div className={style.main_div} >
 
                 {/* <----------------Filter Area start----------------> */}
 
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", flexDirection: "column" }} >
-                        <div style={{ display: "flex", gap: "20px", marginTop: "50px" }}>
-                            <div style={{ display: "flex" }}>
-                                <label className='text-lg text-slate-600 mb-2'>From </label>
-                                <input
-                                    value={firstDate}
-                                    onChange={() => { setFirstDate(firstDatevalue) }}
-                                    onClick={() => setShow(!show)}
-                                    style={{ width: "150px", border: "1px solid #000", marginLeft: "5px", outline: "none", height: "30px" }}
-
-                                />
+                <div >
+                    <div className={style.filter_div} >
+                        <div className={style.input_div}>
+                            <div style={{display:"flex", gap:"20px"}}>
+                                <div style={{ display: "flex" }}>
+                                    <label className='text-lg text-slate-600 mb-2'>From </label>
+                                    <input
+                                        value={firstDate}
+                                        onChange={() => { setFirstDate(firstDatevalue) }}
+                                        onClick={() => setShow(!show)}
+                                        className={style.date_input}
+                                    />
+                                </div>
+                                <div style={{ display: "flex" }}>
+                                    <label className='text-lg text-slate-600 mb-2'>To</label>
+                                    <input
+                                        value={secondDate}
+                                        onChange={() => { setSecondDate(secondDatevalue) }}
+                                        onClick={() => setShow(!show)}
+                                        className={style.date_input}
+                                    />
+                                </div>
                             </div>
-                            <div style={{ display: "flex" }}>
-                                <label className='text-lg text-slate-600 mb-2'>To</label>
-                                <input
-                                    value={secondDate}
-                                    onChange={() => { setSecondDate(secondDatevalue) }}
-                                    onClick={() => setShow(!show)}
-                                    style={{ width: "150px", border: "1px solid #000", marginLeft: "5px", outline: "none", height: "30px" }}
-
-                                />
+                            <div className={style.clear_btn_div}>
+                                <button className={style.clear_btn} onClick={clearFilter}><span><RxCross2 /></span>Clear filter</button>
                             </div>
                         </div>
-                        {
-                            show ? <DateRange
-                                ranges={[selectionRange]}
-                                onChange={handleSelect}
-                            /> : ""
-                        }
-                        <button className="btn btn-warning" style={{ height: "40px", marginTop: "20px" }} onClick={clearFilter}>Clear filter</button>
                     </div>
+                    {
+                        show ? <DateRange
+                            ranges={[selectionRange]}
+                            onChange={handleSelect}
+                        /> : ""
+                    }
                 </div>
 
                 {/* <----------------Filter Area End----------------> */}
 
-                <div className="w-full" style={{ padding: "0 100px" }} >
+                <div className={style.load_main_div}  >
                     {loadData.map((note) => (
                         <>
-                            <div className={style.main_div}>
+                            <div className={style.load_outer_div}>
                                 <div className={style.price_div}>
                                     <div className={style.price_inner_div}>
-                                        <span className='text-5xl font-bold text-cyan-600'>${note.price}</span>
+                                        <span className={style.price}>${note.price}</span>
                                         <span className=' text-sm text-slate-500'>FTL- {note.equipment} </span>
                                     </div>
                                 </div>
-                                <div>
+                                <div className={style.city_info_div}>
                                     <div className={style.Pickup_load_div}>
-                                        <b className='flex font-normal justify-end'>{note.PcityName}</b>
+                                        <b className={style.PcityName}>{note.PcityName}</b>
                                         <span className='text-sm font-light flex justify-end'> {note.Pdate}, {note.PTimeOne}-{note.PTimeTwo} </span>
                                     </div>
                                     <br />
@@ -133,17 +136,17 @@ const Alldata = ({ loads }) => {
                                 </div>
                                 <div className={style.button_div}>
                                     <Tooltip hasArrow label='View Details' bg='gray.300' color='black'>
-                                        <Link href={`/loads/${note._id}`} className="bg-cyan-600 px-3 py-1 text-white text-lg" >View Detail</Link>
+                                        <Link href={`/loads/${note._id}`} className={style.btn} >View Detail</Link>
                                     </Tooltip>
 
                                     {
                                         note.show ?
                                             <Tooltip hasArrow label='Booked' bg='gray.300' color='black'>
-                                                <div className="bg-cyan-600 px-3 py-1 text-white text-lg" >Booked</div>
+                                                <div className={style.btn} >Booked</div>
                                             </Tooltip> :
 
                                             <Tooltip hasArrow label='Book load' bg='gray.300' color='black'>
-                                                <button onClick={() => handleBookLoad(noteId)} className="bg-cyan-600 px-3 py-1 text-white text-lg" >Book load</button>
+                                                <button onClick={() => handleBookLoad(noteId)} className={style.btn} >Book load</button>
                                             </Tooltip>
                                     }
                                 </div>
