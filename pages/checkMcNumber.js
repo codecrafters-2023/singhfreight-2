@@ -52,7 +52,7 @@ const CheckMcNumber = () => {
     return (
         <div className="flex justify-center items-center">
         {/* // <div className="flex justify-center items-center"> */}
-            <div style={{border:"1px solid #000", padding:"20px", width:"30%", boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)", marginTop:"100px"}}>
+            <div className='lg:w-1/3 md:w-1/2 sm:w-full' style={{border:"1px solid #000", padding:"20px", boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)", marginTop:"100px"}}>
                 {/* <Image src="/headerlogo.png" alt="Logo" className={style.logo} height={70} width={150} /> */}
                 {/* <h2 className="text-center">Login</h2> */}
                 <form onSubmit={handleSubmit}>

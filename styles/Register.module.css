@@ -77,4 +77,15 @@
     background-color: rgb(34, 215, 238);
 }
 
-/* background:"transparent",border:"none",borderBottom:"2px solid #fff" */
+@media (max-width: 992px) {
+    .signup_box{
+        width: 50%;
+    }
+}
+
+@media (max-width: 767px) {
+    .signup_box{
+        margin: 20px 5px;
+        width: 100%;
+    }
+}

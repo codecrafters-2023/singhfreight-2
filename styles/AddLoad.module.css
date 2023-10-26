@@ -21,20 +21,17 @@
 }
 .date_time_div{
     display: flex;
-    /* gap: 20px; */
     justify-content: space-between;
     margin-top: 12px;
 }
 
 .price_weight_div{
     display: flex;
-    /* gap: 15px; */
     margin-top: 12px;
     justify-content: space-between;
 }
 .commodity_div{
     display: flex;
-    /* gap: 15px; */
     margin-top: 12px;
     justify-content: space-between;
 }
@@ -61,24 +58,6 @@
         display: flex;
         flex-direction: column;
     }
-    /* .cityname_zipcode_div{
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-    .form_input{
-        width: 100%;
-    }
-    .date_time_div{
-        flex-direction: column;
-        
-    }
-    .price_weight_div{
-        flex-direction: column;
-    }
-    .commodity_div{
-        flex-direction: column;
-    } */
 }
 
 @media (max-width: 768px) {
