@@ -72,9 +72,8 @@ const Admin = ({ users, loads }) => {
 
 
                 <div>
-                    <h3 className="mt-5">Recently Active Users</h3>
-                    <div className={style.main_div}>
-                        {/* <TableContainer > */}
+                        <h3 className="mt-5">Recently Active Users</h3>
+                    <div className={style.user_main_div}>
                             <Table  style={{padding:"0"}}>
                                 <Thead style={{padding:"0",margin:"0"}}>
                                     <Tr>
@@ -88,14 +87,13 @@ const Admin = ({ users, loads }) => {
                                         <Tbody key={user._id} >
                                             <Tr className={style.td_div}>
                                                 <Td style={{padding:"5px"}}>{user.firstName}</Td>
-                                                <Td style={{padding:"5px"}}>{user.email}</Td>
+                                                <Td style={{padding:"5px",width:"600px"}}>{user.email}</Td>
                                                 <Td>{user.role}</Td>
                                             </Tr>
                                         </Tbody>
                                     </>
                                 ))}
                             </Table>
-                        {/* </TableContainer> */}
                     </div>
                 </div>
             </DashboardLayout>

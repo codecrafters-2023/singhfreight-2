@@ -9,7 +9,7 @@ import { Checkbox, Input, Select, Tooltip } from "@chakra-ui/react";
 import style from "../../styles/allloads.module.css";
 import DashboardLayout from "./layout";
 
-export default function Home({ notes }) {
+export default function Home({ notes, documentId, initialBooleanValue }) {
     const [visibility, setVisibility] = useState(false);
     const [reffNo, setReffNo] = useState("");
     const [PcityName, setPCityName] = useState("");
@@ -34,9 +34,9 @@ export default function Home({ notes }) {
     const [loadInfo, setLoadInfo] = useState("");
     const [noteId, setNoteId] = useState("");
 
-    const [show, setShow] = useState("");
+    const [show, setShow] = useState(initialBooleanValue);
 
-    console.log(show);
+    // console.log(show);
     const router = useRouter();
 
     const editForm = (
@@ -128,6 +128,15 @@ export default function Home({ notes }) {
         });
     };
 
+    const handleUpdateBoolean = async () => {
+        try {
+            const response = await axios.put(`http://localhost:3000/api/updateboolean/${documentId}`);
+            setShow(response.data.data.booleanField);
+        } catch (error) {
+            console.error('Error updating boolean value:', error);
+        }
+    };
+
     return (
         <>
             <DashboardLayout>
@@ -160,8 +169,7 @@ export default function Home({ notes }) {
                                                         {note.DcityName}
                                                     </b>
                                                     <span className="text-sm font-light flex justify-end">
-                                                        {" "}
-                                                        {note.Ddate}, {note.DTimeOne}-{note.DTimeTwo}{" "}
+                                                        {note.Ddate}, {note.DTimeOne}-{note.DTimeTwo}
                                                     </span>
                                                 </div>
                                             </div>
@@ -194,7 +202,7 @@ export default function Home({ notes }) {
                                                             bg="gray.300"
                                                             color="black"
                                                         >
-                                                            <button className={style.btn}>Book load</button>
+                                                            <button onClick={handleUpdateBoolean} className={style.btn}>Book load</button>
                                                         </Tooltip>
                                                     )}
                                                 </div>

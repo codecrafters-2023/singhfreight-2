@@ -35,7 +35,7 @@ export default function DashboardLayout({
                                             <Link href={"/userActiveForm"}>activate carrier</Link>
                                         </li>
                                         <li>
-                                            <Link href={"/activeUsers"}>Active User</Link>
+                                            <Link href={"/userdata/activeUsers"}>Active User</Link>
                                         </li>
                                     </ul>
                                 </div>

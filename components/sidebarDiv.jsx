@@ -12,6 +12,9 @@ const SidebarDiv = () => {
             <div className={style.main}>
                 <div className={style.linkOuterDiv}>
                     <ul>
+                        {/* <li style={{ marginTop: "30px" }}>
+                            <Link href={'/'} className={style.link}>Dashboard</Link >
+                        </li> */}
                         <li style={{ marginTop: "30px" }}>
                             <Link href={'/about'} className={style.link}>about</Link >
                         </li>
@@ -41,7 +44,7 @@ const SidebarDiv = () => {
                                         <Link href={"/userActiveForm"} className={style.link}>activate carrier</Link>
                                     </li>
                                     <li>
-                                        <Link href={"/activeUsers"} className={style.link}>Active User</Link>
+                                        <Link href={"/userdata/activeUsers"} className={style.link}>Active User</Link>
                                     </li>
                                 </>
                                 : ""
