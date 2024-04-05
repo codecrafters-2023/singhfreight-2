@@ -1,5 +1,6 @@
 import { connectMongoDB } from "../../../lib/mongodb";
-const User = require('../../../models/addUser')
+// const User = require('../../../models/addUser')
+import Client from '../../../models/addclient'
 
 connectMongoDB();
 
@@ -7,7 +8,7 @@ export default async function handler(req, res) {
     const { id } = req.query;
 
     try {
-        const load = await User.findById(id);
+        const load = await Client.findById(id);
 
         if (!load) {
             return res.status(404).json({ message: 'User Detail not found' });

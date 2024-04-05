@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
-import Note from '../../models/addUser'
-
+import User from '../../models/User'
 
 async function handler(req, res) {
     if (req.method != "POST") {
@@ -8,13 +7,13 @@ async function handler(req, res) {
     }
 
     try {
-        const { companyName, firstName, lastName, powerUnit, dryVans, reefers, email, password, role } = req.body;
+        const { name, email, password } = req.body;
         await mongoose.connect(process.env.MONGODB_URI, {
             useNewUrlParser: true,
         }).then(() => console.log("DB connected"));
-        let newNote = new Note({ companyName, firstName, lastName, powerUnit, dryVans, reefers, email, password, role });
-        await newNote.save();
-        console.log(newNote);
+        let newUser = new User({ name, email, password });
+        await newUser.save();
+        console.log(newUser);
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: "internal error" });

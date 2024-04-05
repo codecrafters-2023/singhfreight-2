@@ -1,5 +1,5 @@
 import { connectMongoDB } from '../../lib/mongodb';
-import User from '../../models/user';
+import Client from '../../models/addclient';
 
 async function handler(req, res) {
     if (req.method !== 'PUT') {
@@ -8,9 +8,9 @@ async function handler(req, res) {
 
     try {
         const { id } = req.query
-        const { companyName, firstName, lastName, email, role, reefers, dryVans, powerUnit } = req.body;
+        const { name, email, mobileNo, companyName } = req.body;
         await connectMongoDB();
-        const updateNote = await User.findByIdAndUpdate(id, { companyName, firstName, lastName, email, role, reefers, dryVans, powerUnit });
+        const updateNote = await Client.findByIdAndUpdate(id, { name, email, mobileNo, companyName });
         res.status(200).json(updateNote)
     } catch (error) {
         console.log(error);
