@@ -3,7 +3,11 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import { signIn } from 'next-auth/react'
-
+import Image from 'next/image';
+import style from '../styles/Loginin.module.css'
+import { AiFillEye } from 'react-icons/ai';
+import { BsEye } from 'react-icons/bs';
+// import style from '../styles/Register.module.css'
 
 const LoginForm = () => {
     const [email, setEmail] = useState("");
@@ -14,7 +18,7 @@ const LoginForm = () => {
     const [show, setShow] = useState(false);
 
 
-const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
@@ -27,36 +31,43 @@ const handleSubmit = async (e) => {
                 return;
             }
 
-            router.replace("/userdata/activeUsers");
+            router.replace("/user");
 
         } catch (error) {
             console.log(error);
         }
     }
-    
 
     return (
-        <>
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh", background: "whitesmoke" }}>
-                <div className="max-w-md relative flex flex-col p-4 rounded-md text-black bg-white">
-                    <div className="text-2xl font-bold mb-2 text-[#1e0e4b] text-center">Welcome back to <span className="text-[#7747ff]">App</span></div>
-                    <div className="text-sm font-normal mb-4 text-center text-[#1e0e4b]">Log in to your account</div>
-                    <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
-                        <div className="block relative">
-                            <label htmlFor="email" className="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2">Email</label>
-                            <input type="email" id="email" className="rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2  ring-gray-900 outline-0"
+        <div className={style.main} style={{ overflow: "hidden" }}>
+            <div className={style.login_box}>
+                <Image src="/headerlogo.png" alt="Logo" className={style.logo} height={70} width={150} />
+                <h2 className="text-center">Login</h2>
+                <form onSubmit={handleSubmit}>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+                        <div className="form-group flex flex-col">
+                            <label className={style.label} htmlFor="email">Email</label>
+                            <input
+                                type="email"
+                                className={style.form_input}
+                                id="email"
+                                placeholder="abc@gmail.com"
+                                autoComplete='off'
                                 value={email}
-                                onChange={e => setEmail(e.target.value)}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
-
                         </div>
-                        <div className="block relative">
-                            <label htmlFor="password" className="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2">Password</label>
-                            <input type="password" id="password" className="rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2 ring-gray-900 outline-0"
+                        <div className="form-group flex flex-col relative">
+                            <label className={style.label} htmlFor="password">Password</label>
+                            <input
+                                type={`${show ? "text" : "password"}`}
+                                className={style.form_input}
+                                id="password"
+                                placeholder="Password"
                                 value={password}
-                                onChange={e => setPassword(e.target.value)}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
-
+                            <span className={style.password_eye} onClick={() => setShow(!show)}><BsEye /></span>
                         </div>
                         {
                             error &&
@@ -64,16 +75,12 @@ const handleSubmit = async (e) => {
                                 {error}
                             </div>
                         }
-                        <div>
-                            <a className="text-sm text-[#7747ff]" href="#">Forgot your password?
-                            </a></div>
-                        <button type="submit" className="bg-[#7747ff] w-max m-auto px-6 py-2 rounded text-white text-sm font-normal">Login</button>
-
-                    </form>
-                    <div className="text-sm text-center mt-[1.6rem]">Don’t have an account yet? <Link href='/signup' className="text-sm text-[#7747ff]">Signup.</Link> </div>
-                </div>
+                        {/* <button type="submit" className="btn btn-primary btn-block" style={{ marginTop: "10px" }}>Login</button> */}
+                        <button type="submit" className="px-5 py-2.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign In</button>
+                    </div>
+                </form>
             </div>
-        </>
+        </div>
     )
 }
 

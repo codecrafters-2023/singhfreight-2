@@ -1,0 +1,90 @@
+/* min-h-screen mt-6 mb-5 border border-slate-900 p-6 shadow-lg w-3/5 */
+
+.main_div{
+    width: 60%;
+    min-height: 100vh;
+    margin-top: 20px;
+    border: 1px solid rgb(247, 247, 247);
+    padding: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.pickup_div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.cityname_zipcode_div{
+    display: flex;
+    gap: 20px;
+}
+.date_time_div{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+
+.price_weight_div{
+    display: flex;
+    margin-top: 12px;
+    justify-content: space-between;
+}
+.commodity_div{
+    display: flex;
+    margin-top: 12px;
+    justify-content: space-between;
+}
+
+.form_input{
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    width: 100%;
+    height: 32px;
+    padding:  0 12px;
+    border-radius: 3px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+    outline: none;
+    text-overflow: ellipsis;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 992px) {
+    .main_div{
+        width: 100%;
+    }
+    .pickup_div{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .main_div{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .pickup_div{
+        display: flex;
+        flex-direction: column;
+    }
+    .cityname_zipcode_div{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .form_input{
+        width: 100%;
+    }
+    .date_time_div{
+        flex-direction: column;
+    }
+    .price_weight_div{
+        flex-direction: column;
+    }
+    .commodity_div{
+        flex-direction: column;
+    }
+}

@@ -1,15 +1,14 @@
 import { connectMongoDB } from "../../../lib/mongodb";
-import User from "../../../models/User";
 import { NextResponse } from "next/server";
+const careerInfo = require('../../../models/careerInfo')
 
-// const User = require('../../../models/User')
 
 
 export async function POST(req) {
     try {
         await connectMongoDB();
-        const { email } = await req.json();
-        const user = await User.findOne({email}).select("_id");
+        const { mcnumber } = await req.json();
+        const user = await careerInfo.findOne({mcnumber}).select("_id");
         console.log("user:", user);
         return NextResponse.json({ user })
     } catch (error) {

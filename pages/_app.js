@@ -3,7 +3,7 @@ import { SessionProvider } from "next-auth/react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Head from "next/head";
 import { ChakraProvider } from "@chakra-ui/react";
-// import MainHeader from "../components/MainHeader";
+import MainHeader from "../components/MainHeader";
 import StickyHeader from "../components/StickyHeader";
 import { useEffect } from "react";
 // import Footer from '../components/Footer'
@@ -28,7 +28,7 @@ export default function App({
             </Head>
             <ChakraProvider>
                 <SessionProvider session={session}>
-                    {/* <MainHeader /> */}
+                    <MainHeader />
                     <StickyHeader />
                     <Component {...pageProps} />
                     {/* <Footer /> */}
